@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tagihan" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9e3e7fff-de70-4ff4-ae4f-bfc219a5894b">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="432"/>
+	<parameter name="tanggal" class="java.lang.String"/>
+	<parameter name="kodesurat" class="java.lang.String"/>
+	<parameter name="namabu" class="java.lang.String"/>
+	<parameter name="image" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="total_tagihan" class="java.lang.Double"/>
+	<parameter name="total_kekurangan" class="java.lang.Double"/>
+	<parameter name="terbilang" class="java.lang.String"/>
+	<field name="kode_cicilan" class="java.lang.String"/>
+	<field name="tahap_cicilan" class="java.lang.String"/>
+	<field name="tanggal_cicilan" class="java.util.Date"/>
+	<field name="nominal_cicilan" class="java.lang.Double"/>
+	<field name="tagihan_berjalan" class="java.lang.Double"/>
+	<field name="total" class="java.lang.Double"/>
+	<field name="total_kekurangan" class="java.lang.Double"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image scaleImage="FillFrame" hAlign="Center" onErrorType="Blank">
+				<reportElement x="-20" y="0" width="595" height="802" isPrintInFirstWholeBand="true" uuid="01effa9e-b2c7-4c79-968a-78507e10e9ab">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA[$P{image}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="223" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="45" width="50" height="15" uuid="75ba9490-e099-40cb-aa3e-0338ad1d50f7"/>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="50" height="15" uuid="557d36da-a993-495b-9e76-3712357795e6"/>
+				<text><![CDATA[Lampiran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="75" width="50" height="15" uuid="c5142344-ab6e-465f-81b3-0b0651521e53"/>
+				<text><![CDATA[Hal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="45" width="10" height="15" uuid="92eddc23-cc42-4bdd-9440-6ebb1ce94415"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="60" width="10" height="15" uuid="51a0646e-4b86-4d0f-ad38-9a4159486d5f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="75" width="10" height="15" uuid="0984946b-f34f-4aa1-8646-69b38c68b24a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="60" width="120" height="15" uuid="ca2dec36-4383-4160-b538-359e955c3301"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[1 (satu) berkas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="45" width="120" height="15" uuid="ce472432-6856-4fc0-8947-8a8c0d2452d0"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{kodesurat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="18" width="59" height="15" uuid="ee5ec628-db5c-4130-9dad-68368b0ddbbf"/>
+				<text><![CDATA[Kabanjahe, ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="59" y="18" width="121" height="15" uuid="8c38101f-4c1c-46df-9549-1f570574a5c1"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{tanggal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="60" y="75" width="120" height="15" uuid="fc07ab5a-f435-4029-a9c0-1d88288d1220"/>
+				<text><![CDATA[Tagihan Iuran JKN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="110" width="60" height="15" uuid="dd4d2867-4a42-49cb-b93d-3a5ea8cd7d16"/>
+				<text><![CDATA[Kepada yth, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="125" width="90" height="15" uuid="4b5fdd61-d61b-421b-b2b5-5fb418e10c85"/>
+				<text><![CDATA[Bapak/ibu pimpinan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="125" width="110" height="15" uuid="b9c454de-2bfd-43b3-81b1-39d338398b76"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{namabu}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="140" width="50" height="15" uuid="1436acda-1b3d-48fb-8b18-e66e5deebd4a"/>
+				<text><![CDATA[Di Tempat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="185" width="418" height="15" uuid="f6b38ef2-0b04-4a96-aedc-c26ec6927514"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Bersama ini kami sampaikan informasi pembayaran iuran Jaminan Kesehatan Nasional (JKN)  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="200" width="555" height="15" uuid="a1ce6cf2-2625-4845-9349-4f6816f3e588"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[dengan detail rincian pembayaran sebagai berikut :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="418" y="185" width="137" height="15" uuid="33cab2f5-7765-424b-aa6b-dd98c01cad48"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{namabu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="60" height="15" uuid="155d6ec4-c4fb-4a8b-b4c7-175877072540"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ Nomor  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="2" width="80" height="15" uuid="96162d83-ee73-41ec-84bd-5a81832c7577"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Jatuh Tempo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="2" width="40" height="15" uuid="1d3d8b5e-9d47-4744-a3a8-a5e3beeab742"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tahap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="2" width="90" height="15" uuid="40d16129-c117-4b7c-9f71-e5833c6aea63"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Besar Cicilan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="2" width="90" height="15" uuid="91c86d76-a829-4c0b-8b02-4ddb008aa060"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tagihan Berjalan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="2" width="100" height="15" uuid="a14d3bf4-e251-4718-835a-20494535f948"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="2" width="95" height="15" uuid="7d5ad596-a6e1-4458-bcc5-f5d832bfd4cb"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Kekurangan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="15" uuid="627c45c2-6077-4912-a338-e70e9cfea9db"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="100" y="0" width="80" height="15" uuid="26e7d902-0077-42fa-a21e-99343ac4e0db"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tanggal_cicilan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="180" y="0" width="90" height="15" uuid="e28b0a30-2a68-4db2-a5eb-940dc2cc8277"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nominal_cicilan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="270" y="0" width="90" height="15" uuid="10152719-c181-4d73-854e-7c72a9ecf52f"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tagihan_berjalan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="40" height="15" uuid="2a50d3ca-a5fc-45ee-81c7-804ecc6e1fd7"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tahap_cicilan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="360" y="0" width="100" height="15" uuid="205e87b5-6cc1-4389-b688-a926a98c8957"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="460" y="0" width="95" height="15" uuid="9bc85b3c-1905-4ab2-9e7f-171894ae3163"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{total_kekurangan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="305">
+			<staticText>
+				<reportElement x="270" y="0" width="90" height="15" uuid="d09d902f-f22b-42e9-868d-70e1fb515a1e"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="460" y="0" width="95" height="15" uuid="2b5fc648-9b95-4d12-9451-e32cdf941997"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{total_kekurangan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="360" y="0" width="100" height="15" uuid="d30a6d33-715d-44c8-9109-6f563680824c"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{total_tagihan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="29" width="60" height="17" uuid="2610df2f-287b-4e0f-9b26-8391e4984acb"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Terbilang  :  ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="59" y="29" width="496" height="17" uuid="e6ddb462-3fbc-4b3f-9e5b-f3e24e93d572"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{terbilang}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="62" width="555" height="15" uuid="161e73c7-20f4-408a-9a32-c9854342b8dd"/>
+				<text><![CDATA[Jumlah iuran diatas dapat dibayarkan melalui salah satu rekening berikut ini :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="117" width="555" height="14" uuid="11f34c4c-f4c0-4f66-a75f-cd7471561009"/>
+				<text><![CDATA[Jika ada perbedaan Data & Iuran yang kami tagih dengan perhitungan Data & Iuran yang Bapak/Ibu buat, Mohon segera ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="169" width="555" height="14" uuid="1f96682f-99bc-4d01-bd64-98d6a2c16af1"/>
+				<text><![CDATA[Demikian kami sampaikan atas perhatian Bapak/Ibu, kami ucapkan terima kasih.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="217" width="545" height="14" forecolor="#545252" uuid="3baec925-5aae-4a81-93f6-abb88f10a615"/>
+				<text><![CDATA[* Informasi ini dapat dipergunakan tanpa menggunakan tinta basah dari BPJS Kesehatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="77" width="114" height="15" uuid="21822bb5-9bee-4025-9ec6-af82d8591d54"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[          1. Bank Mandiri]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="92" width="114" height="15" uuid="9811d373-aa5a-4f24-abdf-73963069a4be"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[          2. Bank BNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="77" width="13" height="15" uuid="8d220620-8af4-4389-9f5b-d111938fdb6d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="92" width="13" height="15" uuid="59f2ec07-ab8d-41e3-b0fb-b5fb0d695c54"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="77" width="347" height="15" uuid="3951f355-98bb-4f61-be93-1a0e93146d7c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[1230089998779 an. BPJS Kes-Asset DJS Collection JO VA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="92" width="347" height="15" uuid="e50271d2-54e0-4c93-8140-3433f1b7de76"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[5004001775 an. BPJS Kes-Asset DJS Collection JO VA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="131" width="555" height="14" uuid="8ff41591-1bd4-422a-869b-356eb466df4c"/>
+				<text><![CDATA[melakukan konfirmasi ke nomor.Telp 0628-21860 atau menghubungi nomor 08116243311 atas nama sdr. Wisma Wendy]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="145" width="555" height="14" uuid="0c6a9038-14a7-4dd8-9467-ba9eadf5a2b4"/>
+				<text><![CDATA[Saragih.]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
