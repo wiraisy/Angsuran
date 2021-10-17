@@ -210,9 +210,13 @@ public class CicilanController {
         }
 
     }
+    
+    private Double totalbayar;
+    private Double totalcurrent;
 
     public void ubah(CicilanFrame d, Confirm confirm) {
-        double totalcurrent = 0d;
+        totalcurrent = 0d;
+        totalbayar = 0d;
         if (d.getBa().getNama_bu().isEmpty()) {
             confirm.Warning("anda belum memilih ba");
         } else {           
@@ -223,17 +227,17 @@ public class CicilanController {
                 cl.setTahap_cicilan(d.getTahapancicilan().getText());
                 cl.setNominal_cicilan(HelperUmum.ubahFormatRupiahkeAngka(d.getNominalcicilan().getText()));
                 cl.setTanggal_cicilan(d.getTanggalcicilan().getDate());
-                if (cl.getNominal_cicilan() == null) {
-                    d.getNominalcicilan().requestFocus();
-                    confirm.Warning("nominal cicilan tidak boleh kosong");
-                }
                 cl.setTagihan_berjalan(HelperUmum.ubahFormatRupiahkeAngka(d.getTagihanberjalan().getText()));
-                if (cl.getTagihan_berjalan() == null) {
-                    cl.setTagihan_berjalan(0d);
-                }
                 cl.setTotal(cl.getNominal_cicilan() + cl.getTagihan_berjalan());
                 cl.setTanggal_notifikasi_terakhir(d.getTanggalnotifikasi().getDate());
                 cl.setSentnotification(Boolean.FALSE);
+                List<Pembayaran> listbayar = dao.getallpembayaranbykodecicilan(cl.getKode_cicilan());
+                if (!listbayar.isEmpty()) {
+                    for (Pembayaran pp : listbayar) {
+                        totalbayar += pp.getTotal_pembayaran();
+                    }
+                }
+                cl.setTotal_kekurangan(cl.getTotal() - totalbayar);
                 //==============================================================
                  Ba ba = dao.getbabyid(d.getBa().getId_ba());
                  ba.setTotal_tunggakan(ba.getTotal_tunggakan()-totalcurrent+cl.getTagihan_berjalan());

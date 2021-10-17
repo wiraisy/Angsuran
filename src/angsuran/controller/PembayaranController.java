@@ -48,7 +48,9 @@ public class PembayaranController {
         d.getTablepembayaran().repaint();
     }
     
-    public void klik(PembayaranFrame d, MouseEvent evt){
+    
+    
+    public void klik(PembayaranFrame d, MouseEvent evt){       
         int row = d.getTablepembayaran().rowAtPoint(evt.getPoint());
         if (row != -1) {
             int indeks = d.getTablepembayaran().getSelectedRow();
@@ -56,11 +58,9 @@ public class PembayaranController {
             Pembayaran p = dao.getPembayaranbyid(id);
             d.setPembayaran(p);
             d.getTanggal().setDate(p.getTanggal_pembayaran());
-            d.getTotalcicilan().setText(HelperUmum.setDoubletoIDR(p.getPembayaran_cicilan()));
-            d.getTotalpembayaran().setText(HelperUmum.setDoubletoIDR(p.getPembayaran_tunggakan_berjalan()));
-            d.getTotal().setText(HelperUmum.setDoubletoIDR(p.getTotal_pembayaran()));
             d.getPembayarancicilan().setText(HelperUmum.setDoubletoIDR(p.getPembayaran_cicilan()));
             d.getPembayarantunggakan().setText(HelperUmum.setDoubletoIDR(p.getPembayaran_tunggakan_berjalan()));
+            d.getTotal().setText(HelperUmum.setDoubletoIDR(p.getPembayaran_cicilan()+p.getPembayaran_tunggakan_berjalan()));            
         }
     }
     
@@ -86,24 +86,20 @@ public class PembayaranController {
         d.getPembayarantunggakan().setEnabled(yes);
         d.getTotal().setEnabled(yes);
     }
-    
-    private double totalbayar;
+
     
     public void settotal(PembayaranFrame d) {
-        totalbayar = 0d;
         double cicilan = HelperUmum.ubahFormatRupiahkeAngka(d.getPembayarancicilan().getText());
         double tagihan = HelperUmum.ubahFormatRupiahkeAngka(d.getPembayarantunggakan().getText());
         double total = cicilan + tagihan;
         d.getTotal().setText(HelperUmum.setDoubletoIDR(total));
-        //=======================================================================
-        dao.getallpembayaranbykodecicilan(d.getCicilan().getKode_cicilan()).forEach((p) -> {
-            totalbayar+=p.getTotal_pembayaran();
-        });        
-        d.getTotalpembayaran().setText(HelperUmum.setDoubletoIDR(totalbayar));
-        d.getTotalkekurangan().setText(HelperUmum.setDoubletoIDR(d.getCicilan().getTotal()-totalbayar));
+       
     }
 
+    private Double totalbayarklik;
+    
     public void FindCicilan(PembayaranFrame d, Confirm c, String kodecicilan) {
+        totalbayarklik = 0d;
         Cicilan cicilan = dao.getcicilanbykodecicilan(kodecicilan);
         if (cicilan.getKode_cicilan().isEmpty()) {
             c.Warning("cicilan tidak ditemukan");
@@ -112,8 +108,16 @@ public class PembayaranController {
             d.getTotalcicilan().setText(HelperUmum.setDoubletoIDR(cicilan.getNominal_cicilan()));
             d.getTotaltunggakan().setText(HelperUmum.setDoubletoIDR(cicilan.getTagihan_berjalan()));
             d.getSubtotal().setText(HelperUmum.setDoubletoIDR(cicilan.getTotal()));
-            d.getTotalkekurangan().setText(HelperUmum.setDoubletoIDR(cicilan.getTotal_kekurangan()));
-            d.getTotalpembayaran().setText(HelperUmum.setDoubletoIDR(cicilan.getTotal() - cicilan.getTotal_kekurangan()));
+            //======================================================================================
+            List<Pembayaran> listbayar = dao.getallpembayaranbykodecicilan(d.getKodecicilan().getText());
+            if(!listbayar.isEmpty()){
+                for(Pembayaran bayar:listbayar){
+                    totalbayarklik += bayar.getTotal_pembayaran();
+                }
+            }
+            //==================================================================
+            d.getTotalpembayaran().setText(HelperUmum.setDoubletoIDR(totalbayarklik));
+            d.getTotalkekurangan().setText(HelperUmum.setDoubletoIDR(cicilan.getTotal()-totalbayarklik));            
             LoadAllBa(d, kodecicilan);
             Enable(d, true);
         }
