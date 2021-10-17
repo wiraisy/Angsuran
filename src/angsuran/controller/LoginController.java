@@ -83,7 +83,8 @@ public class LoginController {
         d.getManagementba().setSelected(false);
         d.getManagementcicilan().setSelected(false);
         d.getOlahpembayaran().setSelected(false);
-         d.getMuser().setSelected(false);
+        d.getMuser().setSelected(false);
+        d.getMsmtp().setSelected(false);
         d.setU(new Userku());
     }
     
@@ -93,6 +94,7 @@ public class LoginController {
         d.getPrevilage().setEnabled(yes);
         d.getManagementba().setEnabled(yes);
         d.getManagementcicilan().setEnabled(yes);
+        d.getMsmtp().setEnabled(yes);
         d.getOlahpembayaran().setEnabled(yes);
         d.getMuser().setEnabled(yes);
         d.getTableuser().clearSelection();
@@ -119,6 +121,7 @@ public class LoginController {
             d.getManagementcicilan().setSelected(u.isManagementcicilan());
             d.getOlahpembayaran().setSelected(u.isOlahpembayaran());     
             d.getMuser().setSelected(u.isManagementuser());
+            d.getMsmtp().setSelected(u.isSmtp());
         }
     }
     
@@ -143,6 +146,7 @@ public class LoginController {
         u.setManagementcicilan(d.getU().isManagementcicilan());
         u.setOlahpembayaran(d.getU().isOlahpembayaran());
         u.setManagementuser(d.getU().isManagementuser());
+        u.setSmtp(d.getU().isSmtp());
         if (!u.getUsername().isEmpty() && !u.getPassword().isEmpty() && !u.getPrevillage().isEmpty()) {
             Userku uu = dao.getLoginByUsername(d.getUsername().getText());
             if (uu != null) {
@@ -186,6 +190,7 @@ public class LoginController {
         u.setManagementcicilan(d.getU().isManagementcicilan());
         u.setOlahpembayaran(d.getU().isOlahpembayaran());
         u.setManagementuser(d.getU().isManagementuser());
+        u.setSmtp(d.getU().isSmtp());
         if(!u.getUsername().isEmpty() && !u.getPassword().isEmpty() && !u.getPrevillage().isEmpty()){
             try{
                 dao.Update(u);

@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class UserTM extends AbstractTableModel{
     
-    private static final String[] Header = {"No","Id","Username","Previllage","Management BA","Management Cicilan","Pembayaran","User"};
+    private static final String[] Header = {"No","Id","Username","Previllage","Management BA","Management Cicilan","Pembayaran","User","SMTP"};
     
     private List<Userku> list = new ArrayList<>();
 
@@ -60,6 +60,8 @@ public class UserTM extends AbstractTableModel{
                 return list.get(rowIndex).isOlahpembayaran();
             case 7:
                 return list.get(rowIndex).isManagementuser();
+            case 8:
+                return list.get(rowIndex).isSmtp();
             default:
                     return null;
                         
