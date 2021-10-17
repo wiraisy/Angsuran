@@ -6,7 +6,7 @@
 package angsuran.tablemodel;
 
 
-import angsuran.model.Notifikasi;
+import angsuran.model.SmtpModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -15,19 +15,19 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author User
  */
-public class NotifikasiTM extends AbstractTableModel{
+public class SmtpTM extends AbstractTableModel{
 
-    private final String[] HEADER = {"Id","Nama BU","No Entitas","Tanggal Kirim","Kode Surat","Email","Status"};
+    private final String[] HEADER = {"Id","Hostname","Username","Port","Active"};
     
-    private List<Notifikasi> list = new ArrayList<>();
+    private List<SmtpModel> list = new ArrayList<>();
 
-    public void setList(List<Notifikasi> list) {
+    public void setList(List<SmtpModel> list) {
         this.list = list;
     }
-
+            
     @Override
     public int getRowCount() {
-       return list.size();
+        return list.size();
     }
 
     @Override
@@ -39,30 +39,24 @@ public class NotifikasiTM extends AbstractTableModel{
     public String getColumnName(int column) {
         return HEADER[column];
     }
-    
-    
 
-    @Override
+   @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return list.get(rowIndex).getId_notifikasi();
+                return list.get(rowIndex).getIdsmtp();
             case 1:
-                return list.get(rowIndex).getBa().getNama_bu();
+                return list.get(rowIndex).getHostname();
             case 2:
-                return list.get(rowIndex).getBa().getNo_entitas();
+                return list.get(rowIndex).getUsername();
             case 3:
-                return list.get(rowIndex).getTanggal_kirim();
+                return list.get(rowIndex).getPort();
             case 4:
-                return list.get(rowIndex).getKode_surat();
-            case 5:
-                return list.get(rowIndex).getBa().getAlamat_email();
-            case 6:
-                return list.get(rowIndex).getStatus();
+                return list.get(rowIndex).getActiverecord();
             default:
                     return null;
                 
         }
-    }
     
+    }
 }

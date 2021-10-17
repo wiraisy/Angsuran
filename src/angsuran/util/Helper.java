@@ -34,10 +34,11 @@ public class Helper {
             URL url = HibernateUtil.class.getResource("/hibernate.cfg.xml");
             Configuration configuration = new Configuration().configure(url);
 
-            InputStream is = HibernateUtil.class.getResourceAsStream("/database.properties");
-            Properties props = new Properties();
-            props.load(is);
-            is.close();
+            Properties props;
+            try (InputStream is = HibernateUtil.class.getResourceAsStream("/database.properties")) {
+                props = new Properties();
+                props.load(is);
+            }
 
             configuration.addProperties(props);
 

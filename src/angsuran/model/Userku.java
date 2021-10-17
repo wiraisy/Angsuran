@@ -56,6 +56,10 @@ public class Userku implements Serializable{
     @Setter
     @Column
     private boolean managementuser = Boolean.FALSE;
+    @Getter
+    @Setter
+    @Column
+    private boolean smtp = Boolean.FALSE;
 
     public Userku() {
     }

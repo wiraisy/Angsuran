@@ -7,14 +7,28 @@ package angsuran.controller;
 
 import angsuran.dao.AngsuranDao;
 import angsuran.dao.AngsuranDaoImplements;
+import angsuran.helper.HelperUmum;
 import angsuran.helper.ModalTable;
 import angsuran.listener.Confirm;
+import angsuran.model.Cicilan;
 import angsuran.model.Notifikasi;
 import angsuran.tablemodel.NotifikasiTM;
+import angsuran.view.CicilanFrame;
 import angsuran.view.NotifikasiFrame;
+import angsuran.whatsapp.SendMailWithAttachment;
 import com.stripbandunk.jwidget.model.DefaultPaginationModel;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Desktop;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -63,10 +77,59 @@ public class NotifikasiController {
         modelku.fireTableDataChanged();
         d.getTablenotifikasi().setModel(modelku);
         d.getTablenotifikasi().getColumnModel().getColumn(3).setCellRenderer(new ModalTable());
+        d.getTablenotifikasi().setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                String status = (String) table.getModel().getValueAt(row, 6);
+                if (status.equals("PENDING")) {
+                    setBackground(new Color(255, 255, 102));
+                    setForeground(Color.BLACK);
+                } else {
+                    setBackground(table.getBackground());
+                    setForeground(table.getForeground());
+                }
+
+                return this;
+            }
+        });
         d.getTablenotifikasi().revalidate();
         d.getTablenotifikasi().repaint();
     }
     //===================================================================
+    
+    public void LihatLaporan(NotifikasiFrame d, Confirm c){
+        if(d.getNot() == null){
+            c.Warning("Anda Belum Memilih Data");
+        }else{
+            File ff = new File(d.getNot().getPathpdf());
+                if (ff.exists()) {
+                    try {
+                        Desktop dt = Desktop.getDesktop();
+                        dt.open(ff);
+                    } catch (IOException ex) {
+                        Logger.getLogger(NotifikasiController.class.getName()).log(Level.SEVERE, null, ex);
+                        c.Gagal(ex);
+                    }
+                } else {
+                    c.Warning("File Kosong");
+                }
+        }
+    }
+    
+     public void LoadKlik(NotifikasiFrame d, MouseEvent evt) {
+        if (list != null) {
+            int row = d.getTablenotifikasi().rowAtPoint(evt.getPoint());
+            if (row != -1) {
+                int indeks = d.getTablenotifikasi().getSelectedRow();
+                Long id = (Long) d.getTablenotifikasi().getModel().getValueAt(indeks, 0);
+                Notifikasi not = dao.getnotifikasibyid(id);
+                d.setNot(not);                
+            }
+        }
+
+    }
     
     public void LoadAllNotifikasi(NotifikasiFrame d, String nama_bu, Confirm con) {
         list = new ArrayList<>();
@@ -77,6 +140,23 @@ public class NotifikasiController {
         d.getTablenotifikasi().setModel(model);
         d.getTablenotifikasi().getColumnModel().getColumn(3).setCellRenderer(new ModalTable());
         d.getPagination().setModel(getDefPaginModel(list.size()));
+        d.getTablenotifikasi().setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table,
+                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
+                String status = (String) table.getModel().getValueAt(row, 6);
+                if (status.equals("PENDING")) {
+                    setBackground(new Color(255, 255, 102));
+                    setForeground(Color.BLACK);
+                } else {
+                    setBackground(table.getBackground());
+                    setForeground(table.getForeground());
+                }
+
+                return this;
+            }
+        });
         d.getTablenotifikasi().revalidate();
         d.getTablenotifikasi().repaint();
 

@@ -6,6 +6,7 @@
 package angsuran.view;
 
 import angsuran.controller.CicilanController;
+import angsuran.controller.ImportController;
 import angsuran.helper.HelperUmum;
 import angsuran.helper.TombolCrud;
 import angsuran.helper.TombolGeneral;
@@ -125,6 +126,7 @@ public class CicilanFrame extends javax.swing.JFrame implements Confirm{
         new TombolCrud(reset);
         new TombolCrud(newba);
         new TombolGeneral(keluar);
+        new TombolGeneral(importdata);
         HelperUmum.setUpResolution(this);
         HelperUmum.setlogoframe(this);
         c = new CicilanController();
@@ -182,6 +184,7 @@ public class CicilanFrame extends javax.swing.JFrame implements Confirm{
         hapus = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         keluar = new javax.swing.JButton();
+        importdata = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -580,6 +583,13 @@ public class CicilanFrame extends javax.swing.JFrame implements Confirm{
             }
         });
 
+        importdata.setText("IMPORT EXCEL DATA CICILAN");
+        importdata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importdataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout deskPanelDasar1Layout = new javax.swing.GroupLayout(deskPanelDasar1);
         deskPanelDasar1.setLayout(deskPanelDasar1Layout);
         deskPanelDasar1Layout.setHorizontalGroup(
@@ -609,7 +619,9 @@ public class CicilanFrame extends javax.swing.JFrame implements Confirm{
                         .addContainerGap())
                     .addGroup(deskPanelDasar1Layout.createSequentialGroup()
                         .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(43, 43, 43)
+                        .addComponent(importdata, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 593, Short.MAX_VALUE)
                         .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))))
         );
@@ -622,7 +634,10 @@ public class CicilanFrame extends javax.swing.JFrame implements Confirm{
                         .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(deskPanelDasar1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deskPanelDasar1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(importdata, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(deskPanelDasar1Layout.createSequentialGroup()
@@ -713,12 +728,18 @@ public class CicilanFrame extends javax.swing.JFrame implements Confirm{
         tagihanberjalan.requestFocus();
     }//GEN-LAST:event_nominalcicilanActionPerformed
 
+    private void importdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importdataActionPerformed
+        ImportController ccc = new ImportController();
+        ccc.LoadFilechooserCicilan(this, this);
+    }//GEN-LAST:event_importdataActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton baru;
     private angsuran.helper.DeskPanelDasar deskPanelDasar1;
     private javax.swing.JButton hapus;
+    private javax.swing.JButton importdata;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

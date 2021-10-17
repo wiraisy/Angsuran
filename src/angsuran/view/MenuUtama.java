@@ -11,9 +11,7 @@ import angsuran.helper.TombolCrud;
 import angsuran.helper.TombolGeneral;
 import angsuran.listener.Confirm;
 import angsuran.model.UserModel;
-import angsuran.whatsapp.ReportGenerator;
 import com.stripbandunk.jwidget.JPagination;
-import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -58,6 +56,12 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
     public JButton getUser() {
         return managementuser;
     }
+
+    public JButton getManagementsmtp() {
+        return managementsmtp;
+    }
+    
+    
     //===========================
 
     public JPagination getPagination() {
@@ -83,6 +87,7 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
          tombolGeneral = new TombolGeneral(cicilan);
          tombolGeneral = new TombolGeneral(managementuser);
          tombolGeneral = new TombolGeneral(pembayaran);
+         tombolGeneral = new TombolGeneral(managementsmtp);
          crud = new TombolCrud(refresh);
          crud = new TombolCrud(lihatnotifikasi);
          HelperUmum.setUpResolution(this);     
@@ -91,13 +96,7 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
          //LoadReport();
     }
     
-    public void LoadReport() {
-        try {
-            new ReportGenerator().CreatePDF();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MenuUtama.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
     
     
 
@@ -123,6 +122,7 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
         cicilan = new javax.swing.JButton();
         pembayaran = new javax.swing.JButton();
         managementuser = new javax.swing.JButton();
+        managementsmtp = new javax.swing.JButton();
         notifikasi = new javax.swing.JButton();
         print = new javax.swing.JButton();
 
@@ -242,6 +242,13 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
             }
         });
 
+        managementsmtp.setText("MANAGEMENT SMTP");
+        managementsmtp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managementsmtpActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout transparant3Layout = new javax.swing.GroupLayout(transparant3);
         transparant3.setLayout(transparant3Layout);
         transparant3Layout.setHorizontalGroup(
@@ -252,7 +259,8 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
                     .addComponent(ba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cicilan, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                     .addComponent(pembayaran, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(managementuser, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
+                    .addComponent(managementuser, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                    .addComponent(managementsmtp, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
                 .addContainerGap())
         );
         transparant3Layout.setVerticalGroup(
@@ -266,6 +274,8 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
                 .addComponent(pembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(managementuser, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(managementsmtp, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -361,7 +371,7 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
     }//GEN-LAST:event_formWindowOpened
 
     private void notifikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifikasiActionPerformed
-        LoadReport();
+          cc.LoadReport(this, this);    
     }//GEN-LAST:event_notifikasiActionPerformed
 
     private void PaginationOnPageChange(com.stripbandunk.jwidget.event.PaginationEvent evt) {//GEN-FIRST:event_PaginationOnPageChange
@@ -386,6 +396,12 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
         f.setVisible(true);
     }//GEN-LAST:event_lihatnotifikasiActionPerformed
 
+    private void managementsmtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managementsmtpActionPerformed
+        SmtpFrame f = new SmtpFrame();
+        f.setTitle("MANAGEMENT SMTP");
+        f.setVisible(true);
+    }//GEN-LAST:event_managementsmtpActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -397,6 +413,7 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton lihatnotifikasi;
     private angsuran.helper.LogoBpjs logoBpjs1;
+    private javax.swing.JButton managementsmtp;
     private javax.swing.JButton managementuser;
     private javax.swing.JButton notifikasi;
     private javax.swing.JButton pembayaran;

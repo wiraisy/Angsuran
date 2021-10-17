@@ -14,6 +14,7 @@ import angsuran.model.Ba;
 import angsuran.model.Cicilan;
 import angsuran.model.Notifikasi;
 import angsuran.model.Pembayaran;
+import angsuran.model.SmtpModel;
 import angsuran.model.Userku;
 import java.util.Date;
 import java.util.List;
@@ -81,6 +82,20 @@ public interface AngsuranDao {
         public List<Notifikasi> getnotifikasimaxid();
         
         public Notifikasi getnotifikasibyid(Long id);
+        
+         public List<Notifikasi> getnotifikasibystatus(String status);
+        
+        //======================================================================
+        
+        public SmtpModel getSmtpbyId(Long id);
+        
+        public List<SmtpModel> getalllistsmtpmodel();
+        
+        public List<SmtpModel> getalllistsmtpmodelbyactive(Boolean active);
+        
+        public SmtpModel getactivesmtp();
+        
+
          
         
         

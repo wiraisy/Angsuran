@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/view/CicilanFrame.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/helper/Generatekode.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/controller/CicilanController.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/controller/ImportController.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/dao/AngsuranDao.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/view/MenuUtama.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/dao/AngsuranDaoImplements.java</file>
             <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/whatsapp/SendMailWithAttachment.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/whatsapp/ReportGenerator.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/model/SmtpModel.java</file>
+            <file>file:/C:/Users/User/Documents/NetBeansProjects/Angsuran/src/angsuran/controller/MenuUtamaController.java</file>
         </group>
     </open-files>
 </project-private>

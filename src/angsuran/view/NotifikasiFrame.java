@@ -9,6 +9,7 @@ import angsuran.controller.NotifikasiController;
 import angsuran.helper.HelperUmum;
 import angsuran.helper.TombolGeneral;
 import angsuran.listener.Confirm;
+import angsuran.model.Notifikasi;
 import com.stripbandunk.jwidget.JPagination;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -20,10 +21,19 @@ import javax.swing.JTextField;
  */
 public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
     
-    private String namacari = null;
-    
-    
+    private Notifikasi not;
 
+    public Notifikasi getNot() {
+        return not;
+    }
+
+    public void setNot(Notifikasi not) {
+        this.not = not;
+    }
+    
+    //==========================================================================
+    
+    private String namacari = null;
     
     public JTextField getCari() {
         return cari;
@@ -47,6 +57,7 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
         HelperUmum.setlogoframe(this);
         HelperUmum.setUpResolution(this);
         new TombolGeneral(keluar);
+        new TombolGeneral(lihatlaporan);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         c.LoadAllNotifikasi(this,namacari, this);
     }
@@ -73,6 +84,7 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
         cari = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         pagination = new com.stripbandunk.jwidget.JPagination();
+        lihatlaporan = new javax.swing.JButton();
         keluar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,8 +117,15 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
 
             }
         ));
-        tablenotifikasi.setColumnSelectionAllowed(true);
+        tablenotifikasi.setGridColor(new java.awt.Color(204, 51, 0));
+        tablenotifikasi.setSelectionBackground(new java.awt.Color(255, 153, 0));
+        tablenotifikasi.setSelectionForeground(new java.awt.Color(204, 0, 0));
         tablenotifikasi.getTableHeader().setReorderingAllowed(false);
+        tablenotifikasi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablenotifikasiMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablenotifikasi);
         tablenotifikasi.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -133,6 +152,13 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
             }
         });
 
+        lihatlaporan.setText("LIHAT LAPORAN");
+        lihatlaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lihatlaporanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout transparant1Layout = new javax.swing.GroupLayout(transparant1);
         transparant1.setLayout(transparant1Layout);
         transparant1Layout.setHorizontalGroup(
@@ -140,14 +166,15 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
             .addGroup(transparant1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1327, Short.MAX_VALUE)
                     .addGroup(transparant1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cari, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transparant1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lihatlaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pagination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -161,7 +188,9 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pagination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pagination, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lihatlaporan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -225,6 +254,14 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
          c.actionPagination(this, a-1);
     }//GEN-LAST:event_paginationOnPageChange
 
+    private void tablenotifikasiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablenotifikasiMousePressed
+        c.LoadKlik(this, evt);
+    }//GEN-LAST:event_tablenotifikasiMousePressed
+
+    private void lihatlaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lihatlaporanActionPerformed
+       c.LihatLaporan(this, this);
+    }//GEN-LAST:event_lihatlaporanActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -233,6 +270,7 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton keluar;
+    private javax.swing.JButton lihatlaporan;
     private angsuran.helper.LogoBpjs logoBpjs1;
     private com.stripbandunk.jwidget.JPagination pagination;
     private javax.swing.JTable tablenotifikasi;

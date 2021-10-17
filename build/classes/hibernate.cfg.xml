@@ -24,5 +24,6 @@
     <mapping class="angsuran.model.Pembayaran"/>
     <mapping class="angsuran.model.Userku"/>
     <mapping class="angsuran.model.Notifikasi"/>
+    <mapping class="angsuran.model.SmtpModel"/>
   </session-factory>
 </hibernate-configuration>

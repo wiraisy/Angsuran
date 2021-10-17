@@ -200,6 +200,7 @@
                           <Component id="cicilan" pref="223" max="32767" attributes="0"/>
                           <Component id="pembayaran" pref="223" max="32767" attributes="0"/>
                           <Component id="managementuser" pref="223" max="32767" attributes="0"/>
+                          <Component id="managementsmtp" pref="223" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -216,6 +217,8 @@
                       <Component id="pembayaran" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="managementuser" min="-2" pref="43" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="managementsmtp" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -258,6 +261,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="managementuserActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="managementsmtp">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="MANAGEMENT SMTP"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="managementsmtpActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

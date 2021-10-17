@@ -53,6 +53,12 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
     public JCheckBox getMuser() {
         return muser;
     }
+
+    public JCheckBox getMsmtp() {
+        return msmtp;
+    }
+    
+    
     
     //=======================================================================
 
@@ -110,6 +116,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
         previlage = new javax.swing.JComboBox<>();
         password = new javax.swing.JPasswordField();
         muser = new javax.swing.JCheckBox();
+        msmtp = new javax.swing.JCheckBox();
         baru = new javax.swing.JButton();
         simpan = new javax.swing.JButton();
         update = new javax.swing.JButton();
@@ -198,6 +205,13 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
             }
         });
 
+        msmtp.setText("Management Smtp");
+        msmtp.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                msmtpItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout transparant1Layout = new javax.swing.GroupLayout(transparant1);
         transparant1.setLayout(transparant1Layout);
         transparant1Layout.setHorizontalGroup(
@@ -209,7 +223,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                         .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(transparant1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(transparant1Layout.createSequentialGroup()
                                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +235,6 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                                     .addComponent(password))))
                         .addGap(205, 205, 205))
                     .addGroup(transparant1Layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
                         .addComponent(managementba)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(managementcicilan)
@@ -229,7 +242,9 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                         .addComponent(olahpembayaran)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(muser)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(msmtp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         transparant1Layout.setVerticalGroup(
             transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,13 +261,14 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(previlage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(managementba)
                     .addComponent(managementcicilan)
                     .addComponent(olahpembayaran)
-                    .addComponent(muser))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(muser)
+                    .addComponent(msmtp))
+                .addGap(20, 20, 20))
         );
 
         baru.setText("New");
@@ -316,7 +332,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
             transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transparant2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
                 .addContainerGap())
         );
         transparant2Layout.setVerticalGroup(
@@ -457,15 +473,23 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
 
     private void muserItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_muserItemStateChanged
        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            u.setPrevillage(previlage.getSelectedItem().toString());
+            u.setManagementuser(Boolean.TRUE);
         } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
-            u.setPrevillage(previlage.getSelectedItem().toString());
+            u.setManagementuser(Boolean.FALSE);
         }
     }//GEN-LAST:event_muserItemStateChanged
 
     private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
         dispose();
     }//GEN-LAST:event_keluarActionPerformed
+
+    private void msmtpItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_msmtpItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            u.setSmtp(Boolean.TRUE);
+        } else if (evt.getStateChange() == ItemEvent.DESELECTED) {
+            u.setSmtp(Boolean.FALSE);
+        }
+    }//GEN-LAST:event_msmtpItemStateChanged
 
    
 
@@ -481,6 +505,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
     private angsuran.helper.LogoBpjs logoBpjs1;
     private javax.swing.JCheckBox managementba;
     private javax.swing.JCheckBox managementcicilan;
+    private javax.swing.JCheckBox msmtp;
     private javax.swing.JCheckBox muser;
     private javax.swing.JCheckBox olahpembayaran;
     private javax.swing.JPasswordField password;

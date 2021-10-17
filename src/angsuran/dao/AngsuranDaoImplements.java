@@ -14,12 +14,14 @@ import angsuran.model.Ba;
 import angsuran.model.Cicilan;
 import angsuran.model.Notifikasi;
 import angsuran.model.Pembayaran;
+import angsuran.model.SmtpModel;
 import angsuran.model.Userku;
 import angsuran.util.Helper;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -576,5 +578,121 @@ public class AngsuranDaoImplements implements AngsuranDao {
         }
         return list;
     }
+
+    @Override
+    public List<Notifikasi> getnotifikasibystatus(String status) {
+        Session session = Helper.getSessionFactory().openSession();
+        List<Notifikasi> list = new ArrayList<>();
+        try {
+            Transaction t = session.beginTransaction();
+            Criteria c = session.createCriteria(Notifikasi.class);
+            c.add(Restrictions.eq("status", status));
+            list = c.list();
+            t.commit();
+        } catch (HibernateException he) {
+            session.getTransaction().rollback();
+            he.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return list;
+
+    }
+    
+    
+    
+    //=============================================================================
+
+    @Override
+    public SmtpModel getSmtpbyId(Long id) {
+       Session session = Helper.getSessionFactory().openSession();
+        SmtpModel nf = new SmtpModel();
+        try {
+            Transaction t = session.beginTransaction();
+            nf = (SmtpModel) session.get(SmtpModel.class, id);
+            t.commit();
+        } catch (HibernateException he) {
+            session.getTransaction().rollback();
+            he.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return nf;
+
+    }
+
+    @Override
+    public List<SmtpModel> getalllistsmtpmodel() {
+        Session session = Helper.getSessionFactory().openSession();
+         List<SmtpModel>  list = new ArrayList<>();
+        try {
+            Transaction t = session.beginTransaction();
+            list = session.createCriteria(SmtpModel.class).list();
+            t.commit();
+        } catch (HibernateException he) {
+            session.getTransaction().rollback();
+            he.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return list;
+
+    }
+
+    @Override
+    public List<SmtpModel> getalllistsmtpmodelbyactive(Boolean active) {
+       Session session = Helper.getSessionFactory().openSession();
+         List<SmtpModel>  list = new ArrayList<>();
+        try {
+            Transaction t = session.beginTransaction();
+            Criteria c = session.createCriteria(SmtpModel.class);
+            c.add(Restrictions.eq("activerecord", active));
+            list = c.list();                   
+            t.commit();
+        } catch (HibernateException he) {
+            session.getTransaction().rollback();
+            he.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return list;
+
+    }
+
+    
+
+    @Override
+    public SmtpModel getactivesmtp() {
+        Session session = Helper.getSessionFactory().openSession();
+        SmtpModel nf = new SmtpModel();
+        try {
+            Transaction t = session.beginTransaction();
+            nf = (SmtpModel) session.createCriteria(SmtpModel.class)
+                    .add(Restrictions.eq("activerecord", Boolean.TRUE)).setMaxResults(1).uniqueResult();
+            t.commit();
+        } catch (HibernateException he) {
+            session.getTransaction().rollback();
+            he.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return nf;
+
+    }
+    
+    
+    
+    
+    
 
 }

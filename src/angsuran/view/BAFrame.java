@@ -12,6 +12,7 @@ import angsuran.helper.TombolCrud;
 import angsuran.helper.TombolGeneral;
 import angsuran.listener.Confirm;
 import angsuran.model.Ba;
+import angsuran.whatsapp.SMTP;
 import com.stripbandunk.jwidget.JPagination;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
@@ -276,7 +277,7 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
         jLabel11.setBackground(new java.awt.Color(0, 0, 51));
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel11.setText("email");
+        jLabel11.setText("Email");
 
         email.setBackground(new java.awt.Color(255, 255, 255));
         email.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -338,8 +339,8 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
                     .addComponent(noba, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -357,7 +358,7 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hnotifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
 
         tableba.setAutoCreateRowSorter(true);
@@ -625,7 +626,7 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
 
     private void tombolimportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolimportActionPerformed
        ImportController ic = new ImportController();
-       ic.LoadFilechooser(this, this);
+       ic.LoadFilechooserBA(this, this);
        c.LoadAllBA(this, null, null, null);
     }//GEN-LAST:event_tombolimportActionPerformed
 

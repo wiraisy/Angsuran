@@ -41,6 +41,10 @@ public class Notifikasi implements Serializable {
     
     private String kode_surat;
     
+    private String pathpdf;
+    
+    private String status;
+    
     
     
     
