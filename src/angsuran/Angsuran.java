@@ -21,7 +21,6 @@ public class Angsuran {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
         AngsuranDao dao = new AngsuranDaoImplements();
         if (dao.getalluser().isEmpty()) {
             UserFrame fd = new UserFrame();
@@ -30,6 +29,7 @@ public class Angsuran {
             JOptionPane.showMessageDialog(fd, "Silahkan Tambah User..!!!");
         } else {
             Login log = new Login();
+            log.setTitle("Login User");
             log.setSize(957, 474);
             log.setTitle("Menu Login");
             log.setVisible(true);

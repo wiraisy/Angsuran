@@ -270,10 +270,14 @@ public class CicilanController {
                 List<Pembayaran> listpembayaran = dao.getallpembayaranbykodecicilan(cl.getKode_cicilan());
                 if(!listpembayaran.isEmpty()){
                     for(Pembayaran pem:listpembayaran){
+                        Ba ba = dao.getBabynoentitas(cl.getBa().getNo_entitas());
+                        ba.setTotal_kekurangan(ba.getTotal_kekurangan() + pem.getPembayaran_cicilan());
+                        ba.setTotal_pembayaran(ba.getTotal_pembayaran() - pem.getPembayaran_cicilan());
+                        dao.Update(ba);
                         Pembayaran pe = dao.getPembayaranbyid(pem.getId_pembayaran());
                         dao.Delete(pe);
                     }
-                }
+                }                            
                 try {
                     dao.Delete(cl);
                     loadcicilan(d, d.getBa());

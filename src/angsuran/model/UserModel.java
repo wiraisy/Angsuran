@@ -36,6 +36,7 @@ public class UserModel {
     private boolean olahpembayaran = Boolean.FALSE;   
     private boolean managementuser = Boolean.FALSE;   
     private boolean smtp = Boolean.FALSE;
+    private boolean laporan = Boolean.FALSE;
 
     public UserModel() {
     }
@@ -111,10 +112,16 @@ public class UserModel {
         this.smtp = smtp;
         fireChange();
     }
-    
-    
-    
-    
+
+    public boolean isLaporan() {
+        return laporan;
+    }
+
+    public void setLaporan(boolean laporan) {
+        this.laporan = laporan;
+        fireChange();
+    }
+   
 
     public LoginListener getListener() {
         return listener;
@@ -148,6 +155,7 @@ public class UserModel {
         setOlahpembayaran(false);
         setManagementuser(false);
         setSmtp(false);
+        setLaporan(false);
     }
     
     
@@ -163,6 +171,7 @@ public class UserModel {
                 setOlahpembayaran(u.isOlahpembayaran());
                 setManagementuser(u.isManagementuser());
                 setSmtp(u.isSmtp());
+                setLaporan(u.isLaporan());
                 confirm.Berhasil("Selamat Datang "+u.getUsername());              
             }else{
                 match = false;

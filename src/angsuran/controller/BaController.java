@@ -77,6 +77,7 @@ public class BaController {
         d.getTableba().setModel(modelku);
         d.getTableba().getColumnModel().getColumn(5).setCellRenderer(new ModalTable());
         d.getTableba().getColumnModel().getColumn(6).setCellRenderer(new ModalTable());
+        d.getTableba().getColumnModel().getColumn(9).setCellRenderer(new ModalTable());
         d.getTableba().revalidate();
         d.getTableba().repaint();
     }
@@ -91,6 +92,7 @@ public class BaController {
         d.getTableba().setModel(model);
         d.getTableba().getColumnModel().getColumn(5).setCellRenderer(new ModalTable());
         d.getTableba().getColumnModel().getColumn(6).setCellRenderer(new ModalTable());
+        d.getTableba().getColumnModel().getColumn(9).setCellRenderer(new ModalTable());
         d.getPaginba().setModel(getDefPaginModel(list.size()));
         d.getTableba().revalidate();
         d.getTableba().repaint();
@@ -175,9 +177,12 @@ public class BaController {
         ba.setNo_ba(d.getNoba().getText());
         ba.setTanggal_ba(d.getTanggalba().getDate());
         ba.setTotal_tunggakan(HelperUmum.ubahFormatRupiahkeAngka(d.getTotaltunggakan().getText()));
+        ba.setTotal_pembayaran(0d);
+        ba.setTotal_kekurangan(ba.getTotal_tunggakan());
         ba.setTahap_cicilan(Integer.valueOf(d.getTahapcicilan().getText()));
         ba.setAlamat_email(d.getEmail().getText());
         ba.setH_notifikasi(Integer.valueOf(d.getHnotifikasi().getText()));
+        ba.setStatus_tunggakan("BELUM LUNAS");
         try {
             dao.Simpan(ba);
             loaddefaulttable(d);
@@ -187,26 +192,45 @@ public class BaController {
         }
     }
 
+    
     public void update(BAFrame d, Confirm confirm) {
         if (d.getBa() == null) {
             confirm.Warning("Anda Belum memilih data !!");
         } else {
             Ba ba = dao.getbabyid(d.getBa().getId_ba());
-            ba.setNama_bu(d.getNamabu().getText());
-            ba.setNo_entitas(d.getNoentitas().getText());
-            ba.setNo_ba(d.getNoba().getText());
-            ba.setTanggal_ba(d.getTanggalba().getDate());
-            ba.setTotal_tunggakan(HelperUmum.ubahFormatRupiahkeAngka(d.getTotaltunggakan().getText()));
-            ba.setTahap_cicilan(Integer.valueOf(d.getTahapcicilan().getText()));
-            ba.setAlamat_email(d.getEmail().getText());
-            ba.setH_notifikasi(Integer.valueOf(d.getHnotifikasi().getText()));
-            try {
-                dao.Update(ba);
-                loaddefaulttable(d);
-                confirm.Berhasil("data berhasil diupdate");
-            } catch (HibernateException he) {
-                confirm.Gagal(he);
-            }
+            List<Cicilan> listcicilan = dao.getallcicilanbyba(ba);
+                if(listcicilan.isEmpty()){
+                    ba.setNama_bu(d.getNamabu().getText());
+                    ba.setNo_entitas(d.getNoentitas().getText());
+                    ba.setNo_ba(d.getNoba().getText());
+                    ba.setTanggal_ba(d.getTanggalba().getDate());
+                    ba.setTotal_tunggakan(HelperUmum.ubahFormatRupiahkeAngka(d.getTotaltunggakan().getText()));
+                    ba.setTahap_cicilan(Integer.valueOf(d.getTahapcicilan().getText()));
+                    ba.setAlamat_email(d.getEmail().getText());
+                    ba.setH_notifikasi(Integer.valueOf(d.getHnotifikasi().getText()));
+                    try {
+                        dao.Update(ba);
+                        loaddefaulttable(d);
+                        confirm.Berhasil("data berhasil diupdate");
+                    } catch (HibernateException he) {
+                        confirm.Gagal(he);
+                    }
+                }else{
+                    ba.setNama_bu(d.getNamabu().getText());
+                    ba.setNo_entitas(d.getNoentitas().getText());
+                    ba.setNo_ba(d.getNoba().getText());
+                    ba.setTanggal_ba(d.getTanggalba().getDate());
+                    ba.setTahap_cicilan(Integer.valueOf(d.getTahapcicilan().getText()));
+                    ba.setAlamat_email(d.getEmail().getText());
+                    ba.setH_notifikasi(Integer.valueOf(d.getHnotifikasi().getText()));
+                    try {
+                        dao.Update(ba);
+                        loaddefaulttable(d);
+                        confirm.Berhasil("tidak dapat mengupdate data total tunggakan karena data karena ada data cicilan terkait namun data lain berhasil diupdate");
+                    } catch (HibernateException he) {
+                        confirm.Gagal(he);
+                    }
+                }   
         }
     }
 

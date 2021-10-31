@@ -10,6 +10,7 @@ import angsuran.dao.AngsuranDaoImplements;
 import angsuran.helper.HelperUmum;
 import angsuran.helper.ModalTable;
 import angsuran.listener.Confirm;
+import angsuran.model.Ba;
 import angsuran.model.Cicilan;
 import angsuran.model.Pembayaran;
 import angsuran.tablemodel.PembayaranTM;
@@ -18,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import org.hibernate.HibernateException;
 
 /**
@@ -149,9 +151,22 @@ public class PembayaranController {
             co.setTotal_kekurangan(co.getTotal_kekurangan() - (p.getPembayaran_cicilan() + p.getPembayaran_tunggakan_berjalan()));
             if(co.getTotal_kekurangan() <= 0d){
                 co.setStatus("LUNAS");
+            }else{
+                co.setStatus("BELUM LUNAS");
             }
             //======================================================================================================================
+            Ba ba = dao.getbabyid(co.getBa().getId_ba());
+            ba.setTotal_pembayaran(ba.getTotal_pembayaran() + p.getPembayaran_cicilan());
+            ba.setTotal_kekurangan(ba.getTotal_tunggakan() - ba.getTotal_pembayaran());
+            if(Objects.equals(ba.getTotal_pembayaran(), ba.getTotal_tunggakan())){
+                ba.setStatus_tunggakan("LUNAS");
+            }else{
+                ba.setStatus_tunggakan("BELUM LUNAS");
+            }
+            
+            //======================================================================================================================
             try {
+                dao.Update(ba);
                 dao.Update(co);
                 dao.Simpan(p);
             } catch (HibernateException he) {
@@ -180,7 +195,15 @@ public class PembayaranController {
             if(total >= 0d){
                 cil.setStatus("BELUM LUNAS");
             }
+            //==================================================================
+            Ba ba = dao.getbabyid(cil.getBa().getId_ba());
+            ba.setTotal_pembayaran(ba.getTotal_pembayaran() - p.getPembayaran_cicilan());
+            ba.setTotal_kekurangan(ba.getTotal_kekurangan() + p.getPembayaran_cicilan());
+            if(!Objects.equals(ba.getTotal_pembayaran(), ba.getTotal_tunggakan())){
+                ba.setStatus_tunggakan("BELUM LUNAS");
+            }
             try {
+                dao.Update(ba);
                 dao.Update(cil);
                 dao.Delete(p);
             } catch (HibernateException he) {

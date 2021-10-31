@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CicilanTM extends AbstractTableModel{
     
-    private final String[] HEADER = {"No","Id","Nama BU", "No BA", "Tanggal","Nominal","Tagihan Berjalan", "Total","kekurangan","Notifikasi"};
+    private final String[] HEADER = {"Tahapan","Id","Nama BU", "No BA", "Tanggal","Nominal","Tagihan Berjalan", "Total","kekurangan","Notifikasi"};
     
     private List<Cicilan> list = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class CicilanTM extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return rowIndex += 1;
+                return list.get(rowIndex).getTahap_cicilan();
             case 1:
                 return list.get(rowIndex).getId_cicilan();
             case 2:

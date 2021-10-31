@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class BaTableModel extends AbstractTableModel{
     
-    private final String[] HEADER = {"No","Id","Nama BU","No Entitas","No BA","Tanggal BA", "Total Tunggakan","Tahap Cicilan","email"};
+    private final String[] HEADER = {"No","Id","Nama BU","No Entitas","No BA","Tanggal BA", "Total Tunggakan","Tahap Cicilan","email","Pembayaran"};
     
     private List<Ba> list = new ArrayList<>();
 
@@ -62,6 +62,8 @@ public class BaTableModel extends AbstractTableModel{
                 return list.get(rowIndex).getTahap_cicilan();
             case 8:
                 return list.get(rowIndex).getAlamat_email();
+            case 9:
+                return list.get(rowIndex).getTotal_pembayaran();
             default:
                     return null;
                 

@@ -60,6 +60,10 @@ public class Userku implements Serializable{
     @Setter
     @Column
     private boolean smtp = Boolean.FALSE;
+    @Getter
+    @Setter
+    @Column
+    private boolean laporan = Boolean.FALSE;
 
     public Userku() {
     }

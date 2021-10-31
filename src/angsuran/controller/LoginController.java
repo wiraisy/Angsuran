@@ -74,6 +74,7 @@ public class LoginController {
         d.getPrevilage().addItem("Admin");
         d.getPrevilage().addItem("Keuangan");
         d.getPrevilage().addItem("Penagihan");
+      
     }
 
     public void Reset(UserFrame d) {
@@ -85,6 +86,7 @@ public class LoginController {
         d.getOlahpembayaran().setSelected(false);
         d.getMuser().setSelected(false);
         d.getMsmtp().setSelected(false);
+        d.getLaporan().setSelected(false);
         d.setU(new Userku());
     }
     
@@ -97,6 +99,7 @@ public class LoginController {
         d.getMsmtp().setEnabled(yes);
         d.getOlahpembayaran().setEnabled(yes);
         d.getMuser().setEnabled(yes);
+        d.getLaporan().setEnabled(yes);
         d.getTableuser().clearSelection();
     }
     
@@ -122,6 +125,7 @@ public class LoginController {
             d.getOlahpembayaran().setSelected(u.isOlahpembayaran());     
             d.getMuser().setSelected(u.isManagementuser());
             d.getMsmtp().setSelected(u.isSmtp());
+            d.getLaporan().setSelected(u.isLaporan());
         }
     }
     
@@ -147,6 +151,7 @@ public class LoginController {
         u.setOlahpembayaran(d.getU().isOlahpembayaran());
         u.setManagementuser(d.getU().isManagementuser());
         u.setSmtp(d.getU().isSmtp());
+        u.setLaporan(d.getU().isLaporan());
         if (!u.getUsername().isEmpty() && !u.getPassword().isEmpty() && !u.getPrevillage().isEmpty()) {
             Userku uu = dao.getLoginByUsername(d.getUsername().getText());
             if (uu != null) {
@@ -191,6 +196,7 @@ public class LoginController {
         u.setOlahpembayaran(d.getU().isOlahpembayaran());
         u.setManagementuser(d.getU().isManagementuser());
         u.setSmtp(d.getU().isSmtp());
+        u.setLaporan(d.getU().isLaporan());
         if(!u.getUsername().isEmpty() && !u.getPassword().isEmpty() && !u.getPrevillage().isEmpty()){
             try{
                 dao.Update(u);

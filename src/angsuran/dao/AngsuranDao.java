@@ -42,6 +42,8 @@ public interface AngsuranDao {
 	
 	public List<Ba> getallbabystatus(String status);
         
+        public List<Ba> getallbabyawalakhirdanstatus(Date awal, Date akhir, String status);
+        
         public Ba getBabynoentitas(String noentitas);
         
         //======================================================================

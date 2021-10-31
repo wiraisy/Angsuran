@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -214,6 +213,34 @@ public class AngsuranDaoImplements implements AngsuranDao {
         }
         return list;
     }
+
+    @Override
+    public List<Ba> getallbabyawalakhirdanstatus(Date awal, Date akhir, String status) {
+        Session session = Helper.getSessionFactory().openSession();
+        List<Ba> list = new ArrayList<>();
+        try {
+            Transaction trans = session.beginTransaction();
+            Criteria c = session.createCriteria(Ba.class);
+            if (awal != null && akhir != null) {
+                c.add(Restrictions.between("tanggal_ba", awal, akhir));
+            }
+            if (status != null) {
+                c.add(Restrictions.ilike("no_entitas", status));
+            }          
+            list = c.list();
+            trans.commit();
+        } catch (HibernateException he) {
+            session.getTransaction().rollback();
+            he.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return list;
+    }
+    
+    
 
     @Override
     public Ba getBabynoentitas(String noentitas) {

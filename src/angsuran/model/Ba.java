@@ -39,6 +39,10 @@ public class Ba implements Serializable {
 	private Date tanggal_ba;
 	
 	private Double total_tunggakan;
+        
+        private Double total_pembayaran;
+        
+        private Double total_kekurangan;
 	
 	private Integer tahap_cicilan;
 	

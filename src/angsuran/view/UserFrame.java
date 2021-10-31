@@ -57,6 +57,12 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
     public JCheckBox getMsmtp() {
         return msmtp;
     }
+
+    public JCheckBox getLaporan() {
+        return laporan;
+    }
+    
+    
     
     
     
@@ -117,6 +123,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
         password = new javax.swing.JPasswordField();
         muser = new javax.swing.JCheckBox();
         msmtp = new javax.swing.JCheckBox();
+        laporan = new javax.swing.JCheckBox();
         baru = new javax.swing.JButton();
         simpan = new javax.swing.JButton();
         update = new javax.swing.JButton();
@@ -212,6 +219,13 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
             }
         });
 
+        laporan.setText("Laporan");
+        laporan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                laporanItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout transparant1Layout = new javax.swing.GroupLayout(transparant1);
         transparant1.setLayout(transparant1Layout);
         transparant1Layout.setHorizontalGroup(
@@ -223,7 +237,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                         .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(transparant1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(transparant1Layout.createSequentialGroup()
                                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +258,10 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                         .addComponent(muser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(msmtp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(transparant1Layout.createSequentialGroup()
+                        .addComponent(laporan)
+                        .addGap(450, 450, 450))))
         );
         transparant1Layout.setVerticalGroup(
             transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,14 +278,16 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(previlage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(managementba)
                     .addComponent(managementcicilan)
                     .addComponent(olahpembayaran)
                     .addComponent(muser)
                     .addComponent(msmtp))
-                .addGap(20, 20, 20))
+                .addGap(18, 18, 18)
+                .addComponent(laporan)
+                .addGap(66, 66, 66))
         );
 
         baru.setText("New");
@@ -332,7 +351,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
             transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transparant2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                 .addContainerGap())
         );
         transparant2Layout.setVerticalGroup(
@@ -491,6 +510,10 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
         }
     }//GEN-LAST:event_msmtpItemStateChanged
 
+    private void laporanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_laporanItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_laporanItemStateChanged
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -502,6 +525,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton keluar;
+    private javax.swing.JCheckBox laporan;
     private angsuran.helper.LogoBpjs logoBpjs1;
     private javax.swing.JCheckBox managementba;
     private javax.swing.JCheckBox managementcicilan;
