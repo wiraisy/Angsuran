@@ -152,6 +152,9 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
             .addGap(0, 69, Short.MAX_VALUE)
         );
 
+        transparant1.setBackground(new java.awt.Color(42, 21, 112));
+        transparant1.setForeground(new java.awt.Color(42, 21, 112));
+
         jLabel2.setBackground(new java.awt.Color(0, 0, 51));
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
@@ -249,20 +252,20 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                                     .addComponent(password))))
                         .addGap(205, 205, 205))
                     .addGroup(transparant1Layout.createSequentialGroup()
-                        .addComponent(managementba)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(managementcicilan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(olahpembayaran)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(muser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(msmtp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(transparant1Layout.createSequentialGroup()
-                        .addComponent(laporan)
-                        .addGap(450, 450, 450))))
+                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(managementba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(managementcicilan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(olahpembayaran))
+                        .addGap(18, 18, 18)
+                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(muser)
+                            .addComponent(msmtp, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(laporan))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
+
+        transparant1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {laporan, managementba, managementcicilan, msmtp, muser, olahpembayaran});
+
         transparant1Layout.setVerticalGroup(
             transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transparant1Layout.createSequentialGroup()
@@ -278,17 +281,22 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(previlage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(managementba)
+                    .addComponent(muser))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(managementcicilan)
-                    .addComponent(olahpembayaran)
-                    .addComponent(muser)
                     .addComponent(msmtp))
-                .addGap(18, 18, 18)
-                .addComponent(laporan)
-                .addGap(66, 66, 66))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(olahpembayaran)
+                    .addComponent(laporan))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        transparant1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {laporan, managementba, managementcicilan, msmtp, muser, olahpembayaran});
 
         baru.setText("New");
         baru.addActionListener(new java.awt.event.ActionListener() {
@@ -325,6 +333,9 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
             }
         });
 
+        transparant2.setBackground(new java.awt.Color(42, 21, 112));
+        transparant2.setForeground(new java.awt.Color(42, 21, 112));
+
         tableuser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -351,7 +362,7 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
             transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transparant2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
                 .addContainerGap())
         );
         transparant2Layout.setVerticalGroup(
@@ -378,8 +389,8 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addComponent(baru, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
+                        .addComponent(baru, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -387,15 +398,18 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                         .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(transparant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(transparant1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deskPanelDasar1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
+                        .addGap(0, 797, Short.MAX_VALUE)
+                        .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        deskPanelDasar1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {delete, reset, simpan, update});
+
         deskPanelDasar1Layout.setVerticalGroup(
             deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deskPanelDasar1Layout.createSequentialGroup()
@@ -409,18 +423,19 @@ public class UserFrame extends javax.swing.JFrame implements Confirm {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addComponent(transparant1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(baru, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(transparant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(baru, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        deskPanelDasar1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {baru, delete, reset, simpan, update});
 
         getContentPane().add(deskPanelDasar1, java.awt.BorderLayout.CENTER);
 

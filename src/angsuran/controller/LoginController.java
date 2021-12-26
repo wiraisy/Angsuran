@@ -7,6 +7,7 @@ package angsuran.controller;
 
 import angsuran.dao.AngsuranDao;
 import angsuran.dao.AngsuranDaoImplements;
+import angsuran.helper.JTableRender;
 import angsuran.listener.BCrypt;
 import angsuran.listener.Confirm;
 import angsuran.model.Userku;
@@ -31,6 +32,7 @@ public class LoginController {
     private UserModel model;
     private int banyakLogin = 1;
     private final int maxBanyakLogin = 3;
+    private JTableRender jTableRender;
 
     public void setModel(UserModel model) {
         this.model = model;
@@ -106,7 +108,9 @@ public class LoginController {
     public void LoadList(UserFrame d){
         list = dao.getalluser();
         tm.setList(list);
+        tm.fireTableDataChanged();
         d.getTableuser().setModel(tm);
+        jTableRender = new JTableRender(d.getTableuser());
         d.getTableuser().revalidate();
         d.getTableuser().repaint();
     }

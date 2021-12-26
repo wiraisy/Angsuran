@@ -8,6 +8,7 @@ package angsuran.controller;
 import angsuran.dao.AngsuranDao;
 import angsuran.dao.AngsuranDaoImplements;
 import angsuran.helper.HelperUmum;
+import angsuran.helper.JTableRender;
 import angsuran.helper.ModalTable;
 import angsuran.listener.Confirm;
 import angsuran.model.Ba;
@@ -33,6 +34,7 @@ public class BaController {
     private List<Ba> list = new ArrayList<>();
     private AngsuranDao dao;
     private BaTableModel model;
+    private JTableRender jTableRender;
 
     public BaController() {
         dao = new AngsuranDaoImplements();
@@ -75,9 +77,10 @@ public class BaController {
         modelku.setList(listPerPage);
         modelku.fireTableDataChanged();
         d.getTableba().setModel(modelku);
-        d.getTableba().getColumnModel().getColumn(5).setCellRenderer(new ModalTable());
-        d.getTableba().getColumnModel().getColumn(6).setCellRenderer(new ModalTable());
-        d.getTableba().getColumnModel().getColumn(9).setCellRenderer(new ModalTable());
+        for(int a=0; a<=modelku.getColumnCount()-1; a++){
+            d.getTableba().getColumnModel().getColumn(a).setCellRenderer(new ModalTable());
+        }
+        jTableRender = new JTableRender(d.getTableba());
         d.getTableba().revalidate();
         d.getTableba().repaint();
     }
@@ -90,9 +93,10 @@ public class BaController {
         model.setList(getListByPagination(list, 0));
         model.fireTableDataChanged();
         d.getTableba().setModel(model);
-        d.getTableba().getColumnModel().getColumn(5).setCellRenderer(new ModalTable());
-        d.getTableba().getColumnModel().getColumn(6).setCellRenderer(new ModalTable());
-        d.getTableba().getColumnModel().getColumn(9).setCellRenderer(new ModalTable());
+         for(int a=0; a<=model.getColumnCount()-1; a++){
+            d.getTableba().getColumnModel().getColumn(a).setCellRenderer(new ModalTable());
+        }
+        jTableRender = new JTableRender(d.getTableba());
         d.getPaginba().setModel(getDefPaginModel(list.size()));
         d.getTableba().revalidate();
         d.getTableba().repaint();

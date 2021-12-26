@@ -46,7 +46,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="logoBpjs1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="423" max="-2" attributes="0"/>
                           <Component id="notifikasi" min="-2" pref="233" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="print" min="-2" pref="233" max="-2" attributes="0"/>
@@ -60,12 +60,17 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="logoBpjs1" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="notifikasi" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="print" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="notifikasi" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="print" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="logoBpjs1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -84,17 +89,26 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="484" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="306" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="68" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
         </Container>
         <Container class="angsuran.helper.Transparant" name="transparant2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6f" green="16" red="29" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6f" green="16" red="29" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -104,9 +118,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" pref="941" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="refresh" min="-2" pref="243" max="-2" attributes="0"/>
+                              <Component id="refresh" linkSize="3" min="-2" pref="243" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lihatnotifikasi" min="-2" pref="276" max="-2" attributes="0"/>
+                              <Component id="lihatnotifikasi" linkSize="3" min="-2" pref="276" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="Pagination" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -121,12 +135,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="444" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="Pagination" max="32767" attributes="0"/>
-                          <Component id="refresh" alignment="1" max="32767" attributes="0"/>
                           <Component id="lihatnotifikasi" alignment="1" max="32767" attributes="0"/>
+                          <Component id="refresh" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -156,10 +170,18 @@
                     </Property>
                     <Property name="columnSelectionAllowed" type="boolean" value="true"/>
                     <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="99" red="0" type="rgb"/>
+                      <Color blue="0" green="99" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="intercellSpacing" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[0, 0]"/>
+                    </Property>
+                    <Property name="rowHeight" type="int" value="25"/>
+                    <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="cc" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="showVerticalLines" type="boolean" value="false"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                      <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -189,6 +211,14 @@
           </SubComponents>
         </Container>
         <Container class="angsuran.helper.Transparant" name="transparant3">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6f" green="16" red="29" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6f" green="16" red="29" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -196,12 +226,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ba" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cicilan" pref="223" max="32767" attributes="0"/>
-                          <Component id="pembayaran" pref="223" max="32767" attributes="0"/>
-                          <Component id="managementuser" pref="223" max="32767" attributes="0"/>
-                          <Component id="managementsmtp" pref="223" max="32767" attributes="0"/>
-                          <Component id="laporan" pref="223" max="32767" attributes="0"/>
+                          <Component id="cicilan" linkSize="1" min="-2" pref="223" max="-2" attributes="0"/>
+                          <Component id="pembayaran" linkSize="1" min="-2" pref="223" max="-2" attributes="0"/>
+                          <Component id="managementuser" linkSize="1" min="-2" pref="223" max="-2" attributes="0"/>
+                          <Component id="managementsmtp" linkSize="1" min="-2" pref="223" max="-2" attributes="0"/>
+                          <Component id="laporan" linkSize="1" min="-2" pref="223" max="-2" attributes="0"/>
+                          <Component id="ba" linkSize="1" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -211,17 +241,17 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ba" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="ba" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cicilan" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="cicilan" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="pembayaran" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="pembayaran" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="managementuser" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="managementuser" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="managementsmtp" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="managementsmtp" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="laporan" min="-2" pref="43" max="-2" attributes="0"/>
+                      <Component id="laporan" linkSize="2" min="-2" pref="43" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>

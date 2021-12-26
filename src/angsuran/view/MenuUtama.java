@@ -93,6 +93,8 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
          tombolGeneral = new TombolGeneral(pembayaran);
          tombolGeneral = new TombolGeneral(managementsmtp);
          tombolGeneral = new TombolGeneral(laporan);
+         tombolGeneral = new TombolGeneral(notifikasi);
+         tombolGeneral = new TombolGeneral(print);
          crud = new TombolCrud(refresh);
          crud = new TombolCrud(lihatnotifikasi);
          HelperUmum.setUpResolution(this);     
@@ -143,12 +145,16 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
         logoBpjs1.setLayout(logoBpjs1Layout);
         logoBpjs1Layout.setHorizontalGroup(
             logoBpjs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGap(0, 306, Short.MAX_VALUE)
         );
         logoBpjs1Layout.setVerticalGroup(
             logoBpjs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 68, Short.MAX_VALUE)
         );
+
+        transparant2.setBackground(new java.awt.Color(41, 22, 111));
+        transparant2.setForeground(new java.awt.Color(41, 22, 111));
+        transparant2.setToolTipText("");
 
         TableFilter.setAutoCreateRowSorter(true);
         TableFilter.setBackground(new java.awt.Color(255, 255, 255));
@@ -165,7 +171,12 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
             }
         ));
         TableFilter.setColumnSelectionAllowed(true);
-        TableFilter.setGridColor(new java.awt.Color(0, 153, 51));
+        TableFilter.setGridColor(new java.awt.Color(255, 153, 0));
+        TableFilter.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        TableFilter.setRowHeight(25);
+        TableFilter.setSelectionBackground(new java.awt.Color(255, 204, 0));
+        TableFilter.setShowVerticalLines(false);
+        TableFilter.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TableFilter);
         TableFilter.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -205,18 +216,24 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
                         .addComponent(Pagination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        transparant2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lihatnotifikasi, refresh});
+
         transparant2Layout.setVerticalGroup(
             transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transparant2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Pagination, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(refresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lihatnotifikasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lihatnotifikasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(refresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        transparant3.setBackground(new java.awt.Color(41, 22, 111));
+        transparant3.setForeground(new java.awt.Color(41, 22, 111));
 
         ba.setBackground(new java.awt.Color(14, 14, 67));
         ba.setForeground(new java.awt.Color(255, 255, 255));
@@ -269,14 +286,17 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
             .addGroup(transparant3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(transparant3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cicilan, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(pembayaran, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(managementuser, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(managementsmtp, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(laporan, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
+                    .addComponent(cicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(managementuser, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(managementsmtp, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(laporan, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ba, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        transparant3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ba, cicilan, laporan, managementsmtp, managementuser, pembayaran});
+
         transparant3Layout.setVerticalGroup(
             transparant3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transparant3Layout.createSequentialGroup()
@@ -294,6 +314,8 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
                 .addComponent(laporan, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        transparant3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ba, cicilan, laporan, managementsmtp, managementuser, pembayaran});
 
         notifikasi.setBackground(new java.awt.Color(0, 153, 51));
         notifikasi.setForeground(new java.awt.Color(255, 255, 255));
@@ -330,7 +352,7 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
                         .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(deskPanelDasar1Layout.createSequentialGroup()
                         .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(245, 245, 245)
+                        .addGap(423, 423, 423)
                         .addComponent(notifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -340,12 +362,15 @@ public final class MenuUtama extends javax.swing.JFrame implements Confirm{
         deskPanelDasar1Layout.setVerticalGroup(
             deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(notifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(notifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(print, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

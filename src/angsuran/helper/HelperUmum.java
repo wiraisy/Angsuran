@@ -5,18 +5,22 @@
  */
 package angsuran.helper;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.DisplayMode;
 import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -26,6 +30,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPopupMenu;
@@ -36,6 +41,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -51,18 +57,18 @@ import javax.swing.text.TextAction;
  */
 public class HelperUmum {
     
-    public static void setlogoframe(final JFrame d) {
-        d.setIconImage(Toolkit.getDefaultToolkit().getImage(d.getClass().getResource("/angsuran/image/logo.png")));
+    public static void setlogoframe(JFrame d){
+        Image icon = Toolkit.getDefaultToolkit().getImage(d.getClass().getResource("/angsuran/image/logo.png"));
+        d.setIconImage(icon);
     }
     
-    public static void setlogodialog(final JDialog d) {
-        d.setIconImage(Toolkit.getDefaultToolkit().getImage(d.getClass().getResource("/angsuran/image/logo.png")));
+    public static void setlogodialog(JDialog d) {
+        Image icon = Toolkit.getDefaultToolkit().getImage(d.getClass().getResource("/angsuran/image/logo.png"));
+        d.setIconImage(icon);
     }
     
     public static String angkaToTerbilang(Long angka){
-        
-        String[] huruf={"","Satu","Dua","Tiga","Empat","Lima","Enam","Tujuh","Delapan","Sembilan","Sepuluh","Sebelas"};
-        
+        String[] huruf={"","Satu","Dua","Tiga","Empat","Lima","Enam","Tujuh","Delapan","Sembilan","Sepuluh","Sebelas"};       
         if(angka < 12)
             return huruf[angka.intValue()];
         if(angka >=12 && angka <= 19)
@@ -199,13 +205,37 @@ public class HelperUmum {
     //==========================================================================
     
     public static void setUpResolution(final JFrame d) {
-        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        /*
-         * Disini kita mengatur jika taskbar windows terlihat,
-         * taskbar tidak akan tertimpa JFrame pada resolusi max.
-         */
-        d.setMaximizedBounds(env.getMaximumWindowBounds());
-        d.setExtendedState(d.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        try {
+            FlatLightLaf.setup();
+            UIManager.setLookAndFeel( new MetalLookAndFeel());
+            GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            d.setMaximizedBounds(env.getMaximumWindowBounds());
+            d.setExtendedState(d.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        } catch (HeadlessException e) {
+            e.getMessage();
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(HelperUmum.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void jdialogcenterOnScreen(Component c, final boolean absolute) {
+        try {
+            FlatLightLaf.setup();
+            UIManager.setLookAndFeel(new MetalLookAndFeel());
+            final int width = c.getWidth();
+            final int height = c.getHeight();
+            final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int x = (screenSize.width / 2) - (width / 2);
+            int y = (screenSize.height / 2) - (height / 2);
+            if (!absolute) {
+                x /= 2;
+                y /= 2;
+            }
+            c.setLocation(x, y);
+        } catch (UnsupportedLookAndFeelException e) {
+            e.getMessage();
+        }
+        
     }
     
     public static void autoResizeColumn(JTable jTable1) {
@@ -289,36 +319,7 @@ public class HelperUmum {
         }
     }
 
-    public static void jdialogcenterOnScreen(Component c, final boolean absolute) {
-        final int width = c.getWidth();
-        final int height = c.getHeight();
-        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width / 2) - (width / 2);
-        int y = (screenSize.height / 2) - (height / 2);
-        if (!absolute) {
-            x /= 2;
-            y /= 2;
-        }
-        try {
-//            Plastic3DLookAndFeel.setPlasticTheme(new SkyGreen());
-            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
-
-//            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            // If Nimbus is not available, fall back to cross-platform
-            try {
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                // not worth my time
-            }
-        }
-        c.setLocation(x, y);
-    }
+    
     
 
     public static String ubahdoublekerupiah(double masukan) {

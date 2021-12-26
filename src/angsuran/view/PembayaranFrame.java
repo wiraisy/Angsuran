@@ -13,6 +13,10 @@ import angsuran.listener.Confirm;
 import angsuran.model.Cicilan;
 import angsuran.model.Pembayaran;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ItemEvent;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,6 +29,7 @@ import javax.swing.JTextField;
 public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
     
     private Pembayaran pembayaran = new Pembayaran();
+    private JFrame jfm;
 
     public Pembayaran getPembayaran() {
         return pembayaran;
@@ -47,6 +52,26 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
     }
     
     //==========================================================================
+
+    public JTextField getCariba() {
+        return cariba;
+    }
+
+    public JList<String> getListba() {
+        return listba;
+    }
+
+    public JFrame getFrameCicilan() {
+        return FrameCicilan;
+    }
+
+    public JComboBox<String> getKategori() {
+        return kategori;
+    }
+
+    public JTable getTabelcicilan() {
+        return tabelcicilan;
+    }
 
     public JScrollPane getjScrollPane1() {
         return jScrollPane1;
@@ -100,11 +125,13 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
 
     public PembayaranFrame() {
         initComponents();
+        jfm = this.FrameCicilan;
         new TombolCrud(baru);
         new TombolCrud(simpan);
         new TombolCrud(hapus);
         new TombolCrud(reset);
         new TombolCrud(newcicilan);
+        new TombolCrud(caricicilan);
         new TombolGeneral(keluar);
         HelperUmum.setUpResolution(this);
         HelperUmum.setlogoframe(this);
@@ -131,12 +158,13 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
         logoBpjs2 = new angsuran.helper.LogoBpjs();
         transparant1 = new angsuran.helper.Transparant();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabelcari = new javax.swing.JTable();
-        tahapancicilan = new javax.swing.JTextField();
+        tabelcicilan = new javax.swing.JTable();
+        cariba = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         kategori = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
-        newba1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listba = new javax.swing.JList<>();
         deskPanelDasar1 = new angsuran.helper.DeskPanelDasar();
         logoBpjs1 = new angsuran.helper.LogoBpjs();
         transparant2 = new angsuran.helper.Transparant();
@@ -165,11 +193,18 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
         totalpembayaran = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         subtotal = new javax.swing.JTextField();
+        caricicilan = new javax.swing.JButton();
         baru = new javax.swing.JButton();
         simpan = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         keluar = new javax.swing.JButton();
+
+        FrameCicilan.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                FrameCicilanWindowOpened(evt);
+            }
+        });
 
         javax.swing.GroupLayout logoBpjs2Layout = new javax.swing.GroupLayout(logoBpjs2);
         logoBpjs2.setLayout(logoBpjs2Layout);
@@ -182,7 +217,11 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
             .addGap(0, 64, Short.MAX_VALUE)
         );
 
-        tabelcari.setModel(new javax.swing.table.DefaultTableModel(
+        transparant1.setBackground(new java.awt.Color(41, 22, 111));
+        transparant1.setForeground(new java.awt.Color(41, 22, 111));
+        transparant1.setToolTipText("");
+
+        tabelcicilan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -193,79 +232,94 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
 
             }
         ));
-        tabelcari.setColumnSelectionAllowed(true);
-        jScrollPane2.setViewportView(tabelcari);
-        tabelcari.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tabelcicilan.setColumnSelectionAllowed(true);
+        tabelcicilan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelcicilanMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabelcicilan);
+        tabelcicilan.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        tahapancicilan.setEditable(false);
-        tahapancicilan.setBackground(new java.awt.Color(255, 255, 255));
-        tahapancicilan.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        tahapancicilan.setForeground(new java.awt.Color(0, 0, 51));
-        tahapancicilan.setBorder(null);
-        tahapancicilan.setCaretColor(new java.awt.Color(0, 0, 51));
+        cariba.setBackground(new java.awt.Color(255, 255, 255));
+        cariba.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        cariba.setForeground(new java.awt.Color(0, 0, 51));
+        cariba.setBorder(null);
+        cariba.setCaretColor(new java.awt.Color(0, 0, 51));
+        cariba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caribaActionPerformed(evt);
+            }
+        });
 
         jLabel17.setBackground(new java.awt.Color(0, 0, 51));
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 51));
         jLabel17.setText("KEY SEARCH");
 
-        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        kategori.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                kategoriItemStateChanged(evt);
+            }
+        });
 
         jLabel18.setBackground(new java.awt.Color(0, 0, 51));
         jLabel18.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 51));
         jLabel18.setText("KATEGORI");
 
-        newba1.setBackground(new java.awt.Color(0, 153, 0));
-        newba1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        newba1.setText("KELUAR");
-        newba1.setBorder(null);
-        newba1.setBorderPainted(false);
+        listba.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listba.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listbaMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(listba);
 
         javax.swing.GroupLayout transparant1Layout = new javax.swing.GroupLayout(transparant1);
         transparant1.setLayout(transparant1Layout);
         transparant1Layout.setHorizontalGroup(
             transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transparant1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transparant1Layout.createSequentialGroup()
+                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(kategori, javax.swing.GroupLayout.Alignment.TRAILING, 0, 211, Short.MAX_VALUE)
+                            .addComponent(cariba, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        transparant1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel17, jLabel18});
+
+        transparant1Layout.setVerticalGroup(
+            transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transparant1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addGroup(transparant1Layout.createSequentialGroup()
-                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(transparant1Layout.createSequentialGroup()
-                                    .addGap(128, 128, 128)
-                                    .addComponent(tahapancicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(transparant1Layout.createSequentialGroup()
-                                    .addComponent(jLabel18)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 789, Short.MAX_VALUE)
-                        .addComponent(newba1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        transparant1Layout.setVerticalGroup(
-            transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transparant1Layout.createSequentialGroup()
+                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cariba, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(transparant1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel18))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tahapancicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17))
-                        .addGap(18, 18, 18))
-                    .addGroup(transparant1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(newba1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
+
+        transparant1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cariba, kategori});
+
+        transparant1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel17, jLabel18});
 
         javax.swing.GroupLayout deskPanelDasar2Layout = new javax.swing.GroupLayout(deskPanelDasar2);
         deskPanelDasar2.setLayout(deskPanelDasar2Layout);
@@ -274,10 +328,10 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
             .addGroup(deskPanelDasar2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(deskPanelDasar2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(transparant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(deskPanelDasar2Layout.createSequentialGroup()
                         .addComponent(logoBpjs2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(transparant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         deskPanelDasar2Layout.setVerticalGroup(
@@ -286,8 +340,8 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
                 .addContainerGap()
                 .addComponent(logoBpjs2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(transparant1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addComponent(transparant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(39, 39, 39))
         );
 
         FrameCicilan.getContentPane().add(deskPanelDasar2, java.awt.BorderLayout.CENTER);
@@ -303,12 +357,16 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
         logoBpjs1.setLayout(logoBpjs1Layout);
         logoBpjs1Layout.setHorizontalGroup(
             logoBpjs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
         logoBpjs1Layout.setVerticalGroup(
             logoBpjs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGap(0, 56, Short.MAX_VALUE)
         );
+
+        transparant2.setBackground(new java.awt.Color(41, 22, 111));
+        transparant2.setForeground(new java.awt.Color(41, 22, 111));
+        transparant2.setToolTipText("");
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 51));
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -381,7 +439,7 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
                                 .addComponent(total, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(pembayarantunggakan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(pembayarancicilan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(130, 130, 130))
+                .addGap(79, 79, 79))
         );
         transparant2Layout.setVerticalGroup(
             transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,6 +462,10 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
                     .addComponent(jLabel12))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        transparant3.setBackground(new java.awt.Color(41, 22, 111));
+        transparant3.setForeground(new java.awt.Color(41, 22, 111));
+        transparant3.setToolTipText("");
 
         tablepembayaran.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -431,7 +493,7 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
             transparant3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transparant3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
                 .addContainerGap())
         );
         transparant3Layout.setVerticalGroup(
@@ -441,6 +503,10 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        transparant4.setBackground(new java.awt.Color(41, 22, 111));
+        transparant4.setForeground(new java.awt.Color(41, 22, 111));
+        transparant4.setToolTipText("");
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 51));
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -529,6 +595,17 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
         subtotal.setBorder(null);
         subtotal.setCaretColor(new java.awt.Color(0, 0, 51));
 
+        caricicilan.setBackground(new java.awt.Color(0, 153, 0));
+        caricicilan.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        caricicilan.setText("CARI CICILAN");
+        caricicilan.setBorder(null);
+        caricicilan.setBorderPainted(false);
+        caricicilan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caricicilanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout transparant4Layout = new javax.swing.GroupLayout(transparant4);
         transparant4.setLayout(transparant4Layout);
         transparant4Layout.setHorizontalGroup(
@@ -555,7 +632,9 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(totalkekurangan, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(newcicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(transparant4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newcicilan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(caricicilan, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
                 .addContainerGap())
         );
         transparant4Layout.setVerticalGroup(
@@ -570,7 +649,8 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(transparant4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalcicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(caricicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(transparant4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totaltunggakan, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -648,51 +728,53 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
             .addGroup(deskPanelDasar1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(deskPanelDasar1Layout.createSequentialGroup()
+                            .addComponent(baru, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(transparant4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addComponent(baru, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(transparant2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(transparant4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 830, Short.MAX_VALUE)
+                        .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(transparant3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        deskPanelDasar1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {hapus, reset});
+
         deskPanelDasar1Layout.setVerticalGroup(
             deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(deskPanelDasar1Layout.createSequentialGroup()
                         .addComponent(transparant4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(baru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(simpan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(hapus, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(transparant3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        deskPanelDasar1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {baru, hapus, reset, simpan});
 
         getContentPane().add(deskPanelDasar1, java.awt.BorderLayout.CENTER);
 
@@ -752,11 +834,48 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
         pembayarantunggakan.requestFocus();
     }//GEN-LAST:event_pembayarancicilanActionPerformed
 
+    private void caricicilanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caricicilanActionPerformed
+        cariba.setText(null);
+        HelperUmum.setUpResolution(jfm);
+        HelperUmum.setlogoframe(jfm); 
+        c.LoadKategori(this);
+        kategori.setSelectedIndex(0);
+        jfm.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        jfm.setVisible(true);
+        
+    }//GEN-LAST:event_caricicilanActionPerformed
+
+    private void FrameCicilanWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_FrameCicilanWindowOpened
+        c.LoadKategori(this);
+        
+    }//GEN-LAST:event_FrameCicilanWindowOpened
+
+    private void caribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caribaActionPerformed
+        c.LoadlistBa(this,kategori.getSelectedIndex(),cariba.getText(), this);
+    }//GEN-LAST:event_caribaActionPerformed
+
+    private void listbaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listbaMouseClicked
+        c.KlikList(this, this);
+    }//GEN-LAST:event_listbaMouseClicked
+
+    private void tabelcicilanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelcicilanMouseClicked
+        c.KlikListcicilan(this, this, evt);
+        jfm.setVisible(false);
+    }//GEN-LAST:event_tabelcicilanMouseClicked
+
+    private void kategoriItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_kategoriItemStateChanged
+       if(evt.getStateChange() == ItemEvent.SELECTED){
+           c.PilihKategori(this, kategori.getSelectedIndex());
+       }
+    }//GEN-LAST:event_kategoriItemStateChanged
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame FrameCicilan;
     private javax.swing.JButton baru;
+    private javax.swing.JTextField cariba;
+    private javax.swing.JButton caricicilan;
     private angsuran.helper.DeskPanelDasar deskPanelDasar1;
     private angsuran.helper.DeskPanelDasar deskPanelDasar2;
     private javax.swing.JButton hapus;
@@ -774,21 +893,21 @@ public class PembayaranFrame extends javax.swing.JFrame implements Confirm{
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JComboBox<String> kategori;
     private javax.swing.JButton keluar;
     private javax.swing.JTextField kodecicilan;
+    private javax.swing.JList<String> listba;
     private angsuran.helper.LogoBpjs logoBpjs1;
     private angsuran.helper.LogoBpjs logoBpjs2;
-    private javax.swing.JButton newba1;
     private javax.swing.JButton newcicilan;
     private javax.swing.JTextField pembayarancicilan;
     private javax.swing.JTextField pembayarantunggakan;
     private javax.swing.JButton reset;
     private javax.swing.JButton simpan;
     private javax.swing.JTextField subtotal;
-    private javax.swing.JTable tabelcari;
+    private javax.swing.JTable tabelcicilan;
     private javax.swing.JTable tablepembayaran;
-    private javax.swing.JTextField tahapancicilan;
     private com.toedter.calendar.JDateChooser tanggal;
     private javax.swing.JTextField total;
     private javax.swing.JTextField totalcicilan;

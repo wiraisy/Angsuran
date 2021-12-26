@@ -10,6 +10,7 @@ import angsuran.dao.AngsuranDaoImplements;
 import angsuran.helper.CompareBaModel;
 import angsuran.helper.Generatekode;
 import angsuran.helper.HelperUmum;
+import angsuran.helper.JTableRender;
 import angsuran.helper.ModalTable;
 import angsuran.listener.Confirm;
 import angsuran.model.BaModel;
@@ -20,7 +21,9 @@ import angsuran.tablemodel.FilterCicilanTM;
 import angsuran.view.MenuUtama;
 import angsuran.whatsapp.SendMailWithAttachment;
 import com.stripbandunk.jwidget.model.DefaultPaginationModel;
+import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -52,6 +55,7 @@ public class MenuUtamaController {
     private FilterCicilanTM model;
     private List<Cicilan> list = new ArrayList<>();
     private static SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+    private JTableRender jTableRender;
 
     public MenuUtamaController() {
         dao = new AngsuranDaoImplements();
@@ -94,13 +98,10 @@ public class MenuUtamaController {
         modelku.setList(listPerPage);
         modelku.fireTableDataChanged();
         d.getTableFilter().setModel(modelku);
-        d.getTableFilter().getColumnModel().getColumn(3).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(4).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(5).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(6).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(7).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(8).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(9).setCellRenderer(new ModalTable());
+        for(int a=0; a<=modelku.getColumnCount()-1; a++){
+            d.getTableFilter().getColumnModel().getColumn(a).setCellRenderer(new ModalTable());
+        }
+        jTableRender = new JTableRender(d.getTableFilter());
         d.getTableFilter().revalidate();
         d.getTableFilter().repaint();
     }
@@ -113,14 +114,10 @@ public class MenuUtamaController {
         model.setList(getListByPagination(list, 0));
         model.fireTableDataChanged();
         d.getTableFilter().setModel(model);
-        d.getTableFilter().getColumnModel().getColumn(3).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(4).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(5).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(6).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(7).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(8).setCellRenderer(new ModalTable());
-        d.getTableFilter().getColumnModel().getColumn(9).setCellRenderer(new ModalTable());
-        d.getPagination().setModel(getDefPaginModel(list.size()));
+        for(int a=0; a<=model.getColumnCount()-1; a++){
+            d.getTableFilter().getColumnModel().getColumn(a).setCellRenderer(new ModalTable());
+        }
+        jTableRender = new JTableRender(d.getTableFilter());
         d.getTableFilter().revalidate();
         d.getTableFilter().repaint();
 
@@ -260,6 +257,19 @@ public class MenuUtamaController {
                 }
                 
             }else{
+                 listnotifikasi = dao.getnotifikasibystatus("PENDING");
+                if(!listnotifikasi.isEmpty()){
+                    for(Notifikasi not: listnotifikasi){
+                        SmtpModel smtp = dao.getactivesmtp();
+                        try {
+                            mail.sendemail(smtp, not, c);
+                        } catch (Exception ex) {
+                            Logger.getLogger(MenuUtamaController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }                       
+                }else{
+                    c.Warning("Tidak ada notifikasi pending");
+                }
                 c.Warning("Tidak ada Angsuran jatuh tempo hari ini...!!!");
             }
         } catch (FileNotFoundException ex) {

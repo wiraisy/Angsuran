@@ -28,6 +28,7 @@ public class Login extends javax.swing.JDialog implements LoginListener, Confirm
     private final LoginController controller;
     private final UserModel model;
     private final AngsuranDao dao;
+    private TombolCrud crud;
 
     public JPasswordField getPassword() {
         return password;
@@ -46,8 +47,8 @@ public class Login extends javax.swing.JDialog implements LoginListener, Confirm
         controller = new LoginController();
         controller.setModel(model);
         dao = new AngsuranDaoImplements();
-        new TombolCrud(keluarbtn);
-        new TombolCrud(loginbtn);
+        crud = new TombolCrud(keluarbtn);
+        crud = new TombolCrud(loginbtn);
         HelperUmum.jdialogcenterOnScreen(this, true);
         HelperUmum.setlogodialog(this);
     }
@@ -68,20 +69,32 @@ public class Login extends javax.swing.JDialog implements LoginListener, Confirm
         username = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
-        keluarbtn = new javax.swing.JButton();
         loginbtn = new javax.swing.JButton();
+        keluarbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        transparant1.setBackground(new java.awt.Color(0, 0, 0));
-        transparant1.setForeground(new java.awt.Color(0, 0, 0));
+        org.jdesktop.layout.GroupLayout logoBpjs1Layout = new org.jdesktop.layout.GroupLayout(logoBpjs1);
+        logoBpjs1.setLayout(logoBpjs1Layout);
+        logoBpjs1Layout.setHorizontalGroup(
+            logoBpjs1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 299, Short.MAX_VALUE)
+        );
+        logoBpjs1Layout.setVerticalGroup(
+            logoBpjs1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 57, Short.MAX_VALUE)
+        );
+
+        transparant1.setBackground(new java.awt.Color(41, 22, 111));
+        transparant1.setForeground(new java.awt.Color(41, 22, 111));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 51));
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel1.setText("Username");
+        jLabel1.setText("USERNAME");
 
         username.setBackground(new java.awt.Color(255, 255, 255));
+        username.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         username.setForeground(new java.awt.Color(0, 0, 51));
         username.setBorder(null);
         username.setCaretColor(new java.awt.Color(0, 0, 51));
@@ -92,11 +105,12 @@ public class Login extends javax.swing.JDialog implements LoginListener, Confirm
         });
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 51));
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel2.setText("Password");
+        jLabel2.setText("PASSWORD");
 
         password.setBackground(new java.awt.Color(255, 255, 255));
+        password.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         password.setForeground(new java.awt.Color(0, 0, 51));
         password.setBorder(null);
         password.addActionListener(new java.awt.event.ActionListener() {
@@ -105,84 +119,85 @@ public class Login extends javax.swing.JDialog implements LoginListener, Confirm
             }
         });
 
-        javax.swing.GroupLayout transparant1Layout = new javax.swing.GroupLayout(transparant1);
-        transparant1.setLayout(transparant1Layout);
-        transparant1Layout.setHorizontalGroup(
-            transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transparant1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(transparant1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(password))
-                    .addGroup(transparant1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        transparant1Layout.setVerticalGroup(
-            transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transparant1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
-
-        keluarbtn.setText("Keluar");
-        keluarbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keluarbtnActionPerformed(evt);
-            }
-        });
-
-        loginbtn.setText("Login");
+        loginbtn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        loginbtn.setText("LOGIN");
         loginbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginbtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout deskPanel1Layout = new javax.swing.GroupLayout(deskPanel1);
+        keluarbtn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        keluarbtn.setText("KELUAR");
+        keluarbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keluarbtnActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout transparant1Layout = new org.jdesktop.layout.GroupLayout(transparant1);
+        transparant1.setLayout(transparant1Layout);
+        transparant1Layout.setHorizontalGroup(
+            transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(transparant1Layout.createSequentialGroup()
+                .add(65, 65, 65)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(transparant1Layout.createSequentialGroup()
+                        .add(loginbtn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 158, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(keluarbtn, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(transparant1Layout.createSequentialGroup()
+                        .add(jLabel2)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(password, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 251, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(transparant1Layout.createSequentialGroup()
+                        .add(jLabel1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(username, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 250, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+
+        transparant1Layout.linkSize(new java.awt.Component[] {keluarbtn, loginbtn}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+
+        transparant1Layout.setVerticalGroup(
+            transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(transparant1Layout.createSequentialGroup()
+                .add(175, 175, 175)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(username, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(password, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(29, 29, 29)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(loginbtn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(keluarbtn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(173, Short.MAX_VALUE))
+        );
+
+        transparant1Layout.linkSize(new java.awt.Component[] {keluarbtn, loginbtn}, org.jdesktop.layout.GroupLayout.VERTICAL);
+
+        transparant1Layout.linkSize(new java.awt.Component[] {password, username}, org.jdesktop.layout.GroupLayout.VERTICAL);
+
+        org.jdesktop.layout.GroupLayout deskPanel1Layout = new org.jdesktop.layout.GroupLayout(deskPanel1);
         deskPanel1.setLayout(deskPanel1Layout);
         deskPanel1Layout.setHorizontalGroup(
-            deskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deskPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(deskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(deskPanel1Layout.createSequentialGroup()
-                        .addGap(0, 558, Short.MAX_VALUE)
-                        .addComponent(loginbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(keluarbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(deskPanel1Layout.createSequentialGroup()
-                        .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(46, 46, 46))
-            .addGroup(deskPanel1Layout.createSequentialGroup()
-                .addGap(271, 271, 271)
-                .addComponent(transparant1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            deskPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(deskPanel1Layout.createSequentialGroup()
+                .add(transparant1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(98, 98, 98)
+                .add(logoBpjs1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(99, 99, 99))
         );
         deskPanel1Layout.setVerticalGroup(
-            deskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deskPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(transparant1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addGroup(deskPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(keluarbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54))
+            deskPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(transparant1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(deskPanel1Layout.createSequentialGroup()
+                .add(183, 183, 183)
+                .add(logoBpjs1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(deskPanel1, java.awt.BorderLayout.CENTER);
@@ -191,6 +206,7 @@ public class Login extends javax.swing.JDialog implements LoginListener, Confirm
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        
         password.requestFocus();
     }//GEN-LAST:event_usernameActionPerformed
 

@@ -12,9 +12,12 @@ import angsuran.helper.TombolCrud;
 import angsuran.helper.TombolGeneral;
 import angsuran.listener.Confirm;
 import angsuran.model.Ba;
-import angsuran.whatsapp.SMTP;
 import com.stripbandunk.jwidget.JPagination;
+import com.stripbandunk.jwidget.event.PaginationEvent;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -167,18 +170,21 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
             }
         });
 
-        javax.swing.GroupLayout logoBpjs1Layout = new javax.swing.GroupLayout(logoBpjs1);
+        org.jdesktop.layout.GroupLayout logoBpjs1Layout = new org.jdesktop.layout.GroupLayout(logoBpjs1);
         logoBpjs1.setLayout(logoBpjs1Layout);
         logoBpjs1Layout.setHorizontalGroup(
-            logoBpjs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            logoBpjs1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 275, Short.MAX_VALUE)
         );
         logoBpjs1Layout.setVerticalGroup(
-            logoBpjs1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            logoBpjs1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 50, Short.MAX_VALUE)
         );
 
-        namabu.setBackground(new java.awt.Color(255, 255, 255));
+        transparant1.setBackground(new java.awt.Color(41, 22, 111));
+        transparant1.setForeground(new java.awt.Color(41, 22, 111));
+        transparant1.setToolTipText("");
+
         namabu.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         namabu.setForeground(new java.awt.Color(0, 0, 51));
         namabu.setBorder(null);
@@ -192,14 +198,13 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
         jLabel2.setBackground(new java.awt.Color(0, 0, 51));
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel2.setText("Nama BU");
+        jLabel2.setText("NAMA BU");
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 51));
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel3.setText("No Entitas");
+        jLabel3.setText("NO ENTITAS");
 
-        noentitas.setBackground(new java.awt.Color(255, 255, 255));
         noentitas.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         noentitas.setForeground(new java.awt.Color(0, 0, 51));
         noentitas.setBorder(null);
@@ -210,7 +215,6 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
             }
         });
 
-        noba.setBackground(new java.awt.Color(255, 255, 255));
         noba.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         noba.setForeground(new java.awt.Color(0, 0, 51));
         noba.setBorder(null);
@@ -224,14 +228,13 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
         jLabel4.setBackground(new java.awt.Color(0, 0, 51));
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel4.setText("No BA");
+        jLabel4.setText("NO BA");
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 51));
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel5.setText("Tanggal BA");
+        jLabel5.setText("TANGGAL BA");
 
-        totaltunggakan.setBackground(new java.awt.Color(255, 255, 255));
         totaltunggakan.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         totaltunggakan.setForeground(new java.awt.Color(0, 0, 51));
         totaltunggakan.setBorder(null);
@@ -245,14 +248,13 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
         jLabel6.setBackground(new java.awt.Color(0, 0, 51));
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel6.setText("Total Tunggakan");
+        jLabel6.setText("TOTAL TUNGGAKAN");
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 51));
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel7.setText("Tahap Cicilan");
+        jLabel7.setText("TAHAP CICILAN");
 
-        tahapcicilan.setBackground(new java.awt.Color(255, 255, 255));
         tahapcicilan.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         tahapcicilan.setForeground(new java.awt.Color(0, 0, 51));
         tahapcicilan.setBorder(null);
@@ -266,9 +268,8 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
         jLabel9.setBackground(new java.awt.Color(0, 0, 51));
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel9.setText("H- Notifikasi");
+        jLabel9.setText("H-NOTIFIKASI");
 
-        hnotifikasi.setBackground(new java.awt.Color(255, 255, 255));
         hnotifikasi.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         hnotifikasi.setForeground(new java.awt.Color(0, 0, 51));
         hnotifikasi.setBorder(null);
@@ -277,9 +278,8 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
         jLabel11.setBackground(new java.awt.Color(0, 0, 51));
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel11.setText("Email");
+        jLabel11.setText("EMAIL");
 
-        email.setBackground(new java.awt.Color(255, 255, 255));
         email.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         email.setForeground(new java.awt.Color(0, 0, 51));
         email.setBorder(null);
@@ -290,76 +290,80 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
             }
         });
 
-        javax.swing.GroupLayout transparant1Layout = new javax.swing.GroupLayout(transparant1);
+        org.jdesktop.layout.GroupLayout transparant1Layout = new org.jdesktop.layout.GroupLayout(transparant1);
         transparant1.setLayout(transparant1Layout);
         transparant1Layout.setHorizontalGroup(
-            transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transparant1Layout.createSequentialGroup()
+            transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(transparant1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(transparant1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(noentitas, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transparant1Layout.createSequentialGroup()
-                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(noba)
-                            .addComponent(totaltunggakan)
-                            .addComponent(tahapcicilan)
-                            .addComponent(hnotifikasi)
-                            .addComponent(tanggalba, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(email)))
-                    .addGroup(transparant1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(namabu, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(205, 205, 205))
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(transparant1Layout.createSequentialGroup()
+                        .add(jLabel3)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(noentitas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 234, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, transparant1Layout.createSequentialGroup()
+                        .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel4)
+                            .add(jLabel5)
+                            .add(jLabel6)
+                            .add(jLabel7)
+                            .add(jLabel9)
+                            .add(jLabel11))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(noba)
+                            .add(totaltunggakan)
+                            .add(tahapcicilan)
+                            .add(hnotifikasi)
+                            .add(tanggalba, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 234, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(email)))
+                    .add(transparant1Layout.createSequentialGroup()
+                        .add(jLabel2)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(namabu, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 234, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(133, 133, 133))
         );
         transparant1Layout.setVerticalGroup(
-            transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transparant1Layout.createSequentialGroup()
+            transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(transparant1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(namabu, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noentitas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noba, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tanggalba, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totaltunggakan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tahapcicilan, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hnotifikasi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(44, 44, 44))
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(namabu, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(noentitas, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(noba, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(email, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(tanggalba, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(totaltunggakan, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(tahapcicilan, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(transparant1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(hnotifikasi, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(44, 44, 44))
         );
+
+        transparant2.setBackground(new java.awt.Color(41, 22, 111));
+        transparant2.setForeground(new java.awt.Color(41, 22, 111));
+        transparant2.setToolTipText("");
 
         tableba.setAutoCreateRowSorter(true);
         tableba.setModel(new javax.swing.table.DefaultTableModel(
@@ -390,94 +394,94 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
             }
         });
 
-        cariba.setBackground(new java.awt.Color(255, 255, 255));
         cariba.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         cariba.setForeground(new java.awt.Color(0, 0, 51));
         cariba.setBorder(null);
         cariba.setCaretColor(new java.awt.Color(0, 0, 51));
 
-        btncari.setText("CARI");
+        btncari.setText("FILTER");
         btncari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncariActionPerformed(evt);
             }
         });
 
-        tombolimport.setText("Import Data dari Excel");
+        tombolimport.setText("IMPORT EXCEL");
         tombolimport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tombolimportActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout transparant2Layout = new javax.swing.GroupLayout(transparant2);
+        org.jdesktop.layout.GroupLayout transparant2Layout = new org.jdesktop.layout.GroupLayout(transparant2);
         transparant2.setLayout(transparant2Layout);
         transparant2Layout.setHorizontalGroup(
-            transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transparant2Layout.createSequentialGroup()
+            transparant2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(transparant2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transparant2Layout.createSequentialGroup()
-                        .addComponent(tombolimport, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(paginba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(transparant2Layout.createSequentialGroup()
-                        .addGroup(transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btncari, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(kategori, javax.swing.GroupLayout.Alignment.LEADING, 0, 162, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cariba, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .add(transparant2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, transparant2Layout.createSequentialGroup()
+                        .add(tombolimport, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 302, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(paginba, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(transparant2Layout.createSequentialGroup()
+                        .add(transparant2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(transparant2Layout.createSequentialGroup()
+                                .add(kategori, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(cariba, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 250, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(btncari, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         transparant2Layout.setVerticalGroup(
-            transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(transparant2Layout.createSequentialGroup()
+            transparant2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(transparant2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cariba, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btncari)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(transparant2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(paginba, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tombolimport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .add(transparant2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(cariba, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(kategori, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(26, 26, 26)
+                .add(btncari, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(transparant2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(paginba, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(tombolimport, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(29, 29, 29))
         );
 
-        baru.setText("New");
+        baru.setText("BARU");
         baru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 baruActionPerformed(evt);
             }
         });
 
-        simpan.setText("Save");
+        simpan.setText("SIMPAN");
         simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 simpanActionPerformed(evt);
             }
         });
 
-        update.setText("Update");
+        update.setText("UBAH");
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateActionPerformed(evt);
             }
         });
 
-        delete.setText("Delete");
+        delete.setText("HAPUS");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
 
-        reset.setText("Reset");
+        reset.setText("RESET");
         reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetActionPerformed(evt);
@@ -491,140 +495,143 @@ public class BAFrame extends javax.swing.JFrame implements Confirm{
             }
         });
 
-        javax.swing.GroupLayout deskPanelDasar1Layout = new javax.swing.GroupLayout(deskPanelDasar1);
+        org.jdesktop.layout.GroupLayout deskPanelDasar1Layout = new org.jdesktop.layout.GroupLayout(deskPanelDasar1);
         deskPanelDasar1.setLayout(deskPanelDasar1Layout);
         deskPanelDasar1Layout.setHorizontalGroup(
-            deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deskPanelDasar1Layout.createSequentialGroup()
+            deskPanelDasar1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(deskPanelDasar1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addComponent(baru, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(transparant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .add(deskPanelDasar1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(deskPanelDasar1Layout.createSequentialGroup()
+                        .add(baru, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(simpan, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(update, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(delete, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(reset, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(transparant1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(deskPanelDasar1Layout.createSequentialGroup()
+                        .add(8, 8, 8)
+                        .add(logoBpjs1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(deskPanelDasar1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(deskPanelDasar1Layout.createSequentialGroup()
+                        .add(0, 835, Short.MAX_VALUE)
+                        .add(keluar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 213, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(transparant2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        deskPanelDasar1Layout.linkSize(new java.awt.Component[] {delete, reset, simpan, update}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+
         deskPanelDasar1Layout.setVerticalGroup(
-            deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deskPanelDasar1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
-                .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(transparant2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(deskPanelDasar1Layout.createSequentialGroup()
-                        .addComponent(transparant1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(baru, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(simpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+            deskPanelDasar1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(deskPanelDasar1Layout.createSequentialGroup()
+                .add(26, 26, 26)
+                .add(deskPanelDasar1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(logoBpjs1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(keluar, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(19, 19, 19)
+                .add(deskPanelDasar1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(transparant2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(deskPanelDasar1Layout.createSequentialGroup()
+                        .add(transparant1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(deskPanelDasar1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(baru, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(update, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(delete, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(reset, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(simpan, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(0, 273, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        deskPanelDasar1Layout.linkSize(new java.awt.Component[] {baru, delete, reset, simpan, update}, org.jdesktop.layout.GroupLayout.VERTICAL);
 
         getContentPane().add(deskPanelDasar1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void baruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baruActionPerformed
+    private void baruActionPerformed(ActionEvent evt) {//GEN-FIRST:event_baruActionPerformed
        c.reset(this);
        c.setenable(this, true);
     }//GEN-LAST:event_baruActionPerformed
 
-    private void simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
+    private void simpanActionPerformed(ActionEvent evt) {//GEN-FIRST:event_simpanActionPerformed
         c.simpan(this, this);
         c.reset(this);
         c.setenable(this, false);
     }//GEN-LAST:event_simpanActionPerformed
 
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+    private void updateActionPerformed(ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         c.update(this, this);
         c.reset(this);
         c.setenable(this, false);
     }//GEN-LAST:event_updateActionPerformed
 
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+    private void deleteActionPerformed(ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         c.hapus(this, this);
         c.reset(this);
         c.setenable(this, false);
     }//GEN-LAST:event_deleteActionPerformed
 
-    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+    private void resetActionPerformed(ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         c.reset(this);
     }//GEN-LAST:event_resetActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void formWindowOpened(WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        c.LoadAllBA(this, null, null, null);
        c.setenable(this, false);
     }//GEN-LAST:event_formWindowOpened
 
-    private void btncariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
+    private void btncariActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btncariActionPerformed
         c.LoadSearch(this, this);
     }//GEN-LAST:event_btncariActionPerformed
 
-    private void paginbaOnPageChange(com.stripbandunk.jwidget.event.PaginationEvent evt) {//GEN-FIRST:event_paginbaOnPageChange
+    private void paginbaOnPageChange(PaginationEvent evt) {//GEN-FIRST:event_paginbaOnPageChange
         int a = evt.getCurrentPage();
         c.actionPagination(this, a-1);
     }//GEN-LAST:event_paginbaOnPageChange
 
-    private void tablebaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablebaMouseClicked
+    private void tablebaMouseClicked(MouseEvent evt) {//GEN-FIRST:event_tablebaMouseClicked
         c.klik(this, evt);
         c.setenable(this, true);
     }//GEN-LAST:event_tablebaMouseClicked
 
-    private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
+    private void keluarActionPerformed(ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
        dispose();
     }//GEN-LAST:event_keluarActionPerformed
 
-    private void namabuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namabuActionPerformed
+    private void namabuActionPerformed(ActionEvent evt) {//GEN-FIRST:event_namabuActionPerformed
         noentitas.requestFocus();
     }//GEN-LAST:event_namabuActionPerformed
 
-    private void noentitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noentitasActionPerformed
+    private void noentitasActionPerformed(ActionEvent evt) {//GEN-FIRST:event_noentitasActionPerformed
        noba.requestFocus();
     }//GEN-LAST:event_noentitasActionPerformed
 
-    private void nobaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nobaActionPerformed
+    private void nobaActionPerformed(ActionEvent evt) {//GEN-FIRST:event_nobaActionPerformed
        email.requestFocus();
     }//GEN-LAST:event_nobaActionPerformed
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+    private void emailActionPerformed(ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
        totaltunggakan.requestFocus();
     }//GEN-LAST:event_emailActionPerformed
 
-    private void totaltunggakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totaltunggakanActionPerformed
+    private void totaltunggakanActionPerformed(ActionEvent evt) {//GEN-FIRST:event_totaltunggakanActionPerformed
         tahapcicilan.requestFocus();
     }//GEN-LAST:event_totaltunggakanActionPerformed
 
-    private void tahapcicilanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tahapcicilanActionPerformed
+    private void tahapcicilanActionPerformed(ActionEvent evt) {//GEN-FIRST:event_tahapcicilanActionPerformed
         hnotifikasi.requestFocus();
     }//GEN-LAST:event_tahapcicilanActionPerformed
 
-    private void tombolimportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolimportActionPerformed
+    private void tombolimportActionPerformed(ActionEvent evt) {//GEN-FIRST:event_tombolimportActionPerformed
        ImportController ic = new ImportController();
        ic.LoadFilechooserBA(this, this);
        c.LoadAllBA(this, null, null, null);

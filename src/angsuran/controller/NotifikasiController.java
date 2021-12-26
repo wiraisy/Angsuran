@@ -7,28 +7,23 @@ package angsuran.controller;
 
 import angsuran.dao.AngsuranDao;
 import angsuran.dao.AngsuranDaoImplements;
-import angsuran.helper.HelperUmum;
+import angsuran.helper.JTableRender;
 import angsuran.helper.ModalTable;
 import angsuran.listener.Confirm;
-import angsuran.model.Cicilan;
 import angsuran.model.Notifikasi;
 import angsuran.tablemodel.NotifikasiTM;
-import angsuran.view.CicilanFrame;
 import angsuran.view.NotifikasiFrame;
-import angsuran.whatsapp.SendMailWithAttachment;
 import com.stripbandunk.jwidget.model.DefaultPaginationModel;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -39,7 +34,8 @@ public class NotifikasiController {
     private AngsuranDao dao = new AngsuranDaoImplements();
     private NotifikasiTM model = new NotifikasiTM();
     private List<Notifikasi> list = new ArrayList<>();
-    
+    private final Map<Integer, String> mapval = new HashMap<>();
+    private JTableRender jTableRender;
      //=========================== PAGINATION
     public static List<Notifikasi> listPagination = new ArrayList<>();
 
@@ -75,25 +71,15 @@ public class NotifikasiController {
         modelku = new NotifikasiTM();
         modelku.setList(listPerPage);
         modelku.fireTableDataChanged();
-        d.getTablenotifikasi().setModel(modelku);
-        d.getTablenotifikasi().getColumnModel().getColumn(3).setCellRenderer(new ModalTable());
-        d.getTablenotifikasi().setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table,
-                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-                String status = (String) table.getModel().getValueAt(row, 6);
-                if (status.equals("PENDING")) {
-                    setBackground(new Color(255, 255, 102));
-                    setForeground(Color.BLACK);
-                } else {
-                    setBackground(table.getBackground());
-                    setForeground(table.getForeground());
-                }
-
-                return this;
-            }
-        });
+        d.getTablenotifikasi().setModel(modelku);       
+        //===================================================
+        ModalTable tab = new ModalTable();
+        mapval.put(6,"PENDING");
+        tab.setMap(mapval);
+        for(int a=0; a<=modelku.getColumnCount()-1; a++){
+            d.getTablenotifikasi().getColumnModel().getColumn(a).setCellRenderer(tab);
+        }
+        jTableRender = new JTableRender(d.getTablenotifikasi());        
         d.getTablenotifikasi().revalidate();
         d.getTablenotifikasi().repaint();
     }
@@ -131,6 +117,8 @@ public class NotifikasiController {
 
     }
     
+   
+    
     public void LoadAllNotifikasi(NotifikasiFrame d, String nama_bu, Confirm con) {
         list = new ArrayList<>();
         list = dao.getnotifikasibynamabu(nama_bu, con);
@@ -138,25 +126,15 @@ public class NotifikasiController {
         model.setList(getListByPagination(list, 0));
         model.fireTableDataChanged();
         d.getTablenotifikasi().setModel(model);
-        d.getTablenotifikasi().getColumnModel().getColumn(3).setCellRenderer(new ModalTable());
         d.getPagination().setModel(getDefPaginModel(list.size()));
-        d.getTablenotifikasi().setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table,
-                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-                String status = (String) table.getModel().getValueAt(row, 6);
-                if (status.equals("PENDING")) {
-                    setBackground(new Color(255, 255, 102));
-                    setForeground(Color.BLACK);
-                } else {
-                    setBackground(table.getBackground());
-                    setForeground(table.getForeground());
-                }
-
-                return this;
-            }
-        });
+        //===================================================
+        ModalTable tab = new ModalTable();
+        mapval.put(6,"PENDING");
+        tab.setMap(mapval);
+        for(int a=0; a<=model.getColumnCount()-1; a++){
+            d.getTablenotifikasi().getColumnModel().getColumn(a).setCellRenderer(tab);
+        }
+        jTableRender = new JTableRender(d.getTablenotifikasi());
         d.getTablenotifikasi().revalidate();
         d.getTablenotifikasi().repaint();
 

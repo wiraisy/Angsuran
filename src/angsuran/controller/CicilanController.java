@@ -9,21 +9,22 @@ import angsuran.dao.AngsuranDao;
 import angsuran.dao.AngsuranDaoImplements;
 import angsuran.helper.Generatekode;
 import angsuran.helper.HelperUmum;
+import angsuran.helper.JTableRender;
 import angsuran.helper.ModalTable;
 import angsuran.listener.Confirm;
 import angsuran.model.Ba;
 import angsuran.model.Cicilan;
 import angsuran.model.Pembayaran;
+import angsuran.tablemodel.CariBUTM;
 import angsuran.tablemodel.CicilanTM;
 import angsuran.view.CicilanFrame;
-import java.awt.Color;
-import java.awt.Component;
+import com.stripbandunk.jwidget.model.DefaultPaginationModel;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
+import java.util.Map;
 import org.hibernate.HibernateException;
 
 /**
@@ -32,14 +33,105 @@ import org.hibernate.HibernateException;
  */
 public class CicilanController {
 
-    private AngsuranDao dao;
+    private AngsuranDao dao = new AngsuranDaoImplements();
     private CicilanTM model = new CicilanTM();
     private List<Cicilan> list = new ArrayList<>();
+    private JTableRender jTableRender;
     private final Generatekode kode = new Generatekode();
+    private Map<Integer, String> map = new HashMap<>();
+    //=========================================================================
+     
+    private CariBUTM catm = new CariBUTM();
+    private List<Ba> listba = new ArrayList<>();
+    
+    
+   //=========================== PAGINATION
+    public static List<Ba> listPagination = new ArrayList<>();
 
-    public CicilanController() {
-        dao = new AngsuranDaoImplements();
+    private static int no;
+
+    public static List<Ba> getListPagination() {
+        return listPagination;
     }
+
+    public static void setListPagination(List<Ba> listPagination) {
+        no = 1;
+        CicilanController.listPagination = listPagination;
+    }
+
+    public DefaultPaginationModel getDefPaginModel(int totalItem) {
+        DefaultPaginationModel dpm = new DefaultPaginationModel();
+        dpm.setTotalItem(totalItem);
+        dpm.setPageSize(50);
+        return dpm;
+    }
+
+    public List<Ba> getListByPagination(List<Ba> listP, int page) {
+        int sizePerPage = 50;
+        int from = Math.max(0, page * sizePerPage);
+        int to = Math.min(listP.size(), (page + 1) * sizePerPage);
+        return listP.subList(from, to);
+    }
+
+    
+    public void actionPagination(CicilanFrame d, int page) {
+        CariBUTM modelku = new CariBUTM();
+        d.getTabelbucari().setModel(modelku);
+        List<Ba> listPerPage = getListByPagination(BaController.getListPagination(), page);
+        modelku = new CariBUTM();
+        modelku.setList(listPerPage);
+        modelku.fireTableDataChanged();
+        d.getTabelbucari().setModel(modelku);
+        map.put(5,"BELUM LUNAS");
+        ModalTable mtab = new ModalTable();
+        mtab.setMap(map);
+        for(int a=0; a<=modelku.getColumnCount()-1; a++){
+            d.getTabelbucari().getColumnModel().getColumn(a).setCellRenderer(mtab);
+        }
+        jTableRender = new JTableRender(d.getTabelbucari());
+        d.getTabelbucari().revalidate();
+        d.getTabelbucari().repaint();
+    }
+    //===================================================================
+
+    public void LoadAllBA(CicilanFrame d, String nama_bu) {
+        listba = new ArrayList<>();
+        listba = dao.getallbabyNamanoentitasandnoba(nama_bu, null, null);
+        CicilanController.setListPagination(listba);
+        catm.setList(getListByPagination(listba, 0));
+        catm.fireTableDataChanged();
+        d.getTabelbucari().setModel(catm);
+        map.put(5,"BELUM LUNAS");
+        ModalTable mtab = new ModalTable();
+        mtab.setMap(map);
+        for(int a=0; a<=catm.getColumnCount()-1; a++){
+            d.getTabelbucari().getColumnModel().getColumn(a).setCellRenderer(mtab);
+        }
+        jTableRender = new JTableRender(d.getTabelbucari());
+        d.getPaginationbu().setModel(getDefPaginModel(listba.size()));
+        d.getTabelbucari().revalidate();
+        d.getTabelbucari().repaint();
+
+    }
+    
+    public void LoadKlikCariba(CicilanFrame d,Confirm c, MouseEvent evt){
+        int row = d.getTabelbucari().rowAtPoint(evt.getPoint());
+        if (row != -1) {
+            int indeks = d.getTabelbucari().getSelectedRow();
+            String noentitas = (String) d.getTabelbucari().getModel().getValueAt(indeks, 2);
+            Ba ba = dao.getBabynoentitas(noentitas);
+            d.setBa(ba);
+            d.getNoba().setText(noentitas);
+            d.getNamaba().setText(ba.getNama_bu());
+            d.getTotaltunggakan().setText(HelperUmum.setDoubletoIDR(ba.getTotal_tunggakan()));
+            d.getTotalpembayaran().setText(HelperUmum.setDoubletoIDR(ba.getTotal_pembayaran()));
+            d.getTotalkekurangan().setText(HelperUmum.setDoubletoIDR(ba.getTotal_kekurangan()));
+            d.getKodecicilan().setText(kode.Generatekodecicilan(ba, c));
+            //==================================================================
+            loadcicilan(d, ba);
+        }
+    }
+    //=========================================================================
 
     public void EnableCicilan(CicilanFrame d, Boolean yes) {
         d.getTanggalcicilan().setEnabled(yes);
@@ -58,7 +150,18 @@ public class CicilanController {
         d.getTablecicilan().setModel(new CicilanTM());
         d.getTablecicilan().revalidate();
         d.getTablecicilan().repaint();
-       
+
+    }
+
+    public double loadallnominalcicilan(Ba ba) {
+        Double total = 0d;
+        List<Cicilan> listt = dao.getallcicilanbyba(ba);
+        if (!list.isEmpty()) {
+            for (Cicilan cil : listt) {
+                total += cil.getNominal_cicilan();
+            }
+        }
+        return total;
     }
 
     public void ResetCicilan(CicilanFrame d) {
@@ -73,34 +176,17 @@ public class CicilanController {
         d.getTanggalnotifikasi().setDate(new Date());
     }
 
-    public void loadcicilan(CicilanFrame d, Ba ba) {
+    public void loadcicilan(CicilanFrame d, Ba ba) {       
         list = dao.getallcicilanbyba(ba);
         model.setList(list);
+        model.fireTableDataChanged();
         d.getTablecicilan().setModel(model);
-        d.getTablecicilan().getColumnModel().getColumn(4).setCellRenderer(new ModalTable());
-        d.getTablecicilan().getColumnModel().getColumn(5).setCellRenderer(new ModalTable());
-        d.getTablecicilan().getColumnModel().getColumn(6).setCellRenderer(new ModalTable());
-        d.getTablecicilan().getColumnModel().getColumn(7).setCellRenderer(new ModalTable());
-        d.getTablecicilan().getColumnModel().getColumn(8).setCellRenderer(new ModalTable());
-        d.getTablecicilan().getColumnModel().getColumn(9).setCellRenderer(new ModalTable());
-        d.getTablecicilan().setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table,
-                    Object value, boolean isSelected, boolean hasFocus, int row, int col) {
-                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-                Double kekurangan = (Double) table.getModel().getValueAt(row, 8);
-                if (kekurangan > 0d) {
-                    setBackground(new Color(255, 255, 102));
-                    setForeground(Color.BLACK);
-                } else {
-                    setBackground(table.getBackground());
-                    setForeground(table.getForeground());
-                }
-
-                return this;
-            }
-        });
-
+        ModalTable tab = new ModalTable();
+        tab.setSpecial(8);
+        for(int a=0; a<=model.getColumnCount()-1; a++){
+            d.getTablecicilan().getColumnModel().getColumn(a).setCellRenderer(tab);
+        }
+        jTableRender = new JTableRender(d.getTablecicilan());
         d.getTablecicilan().revalidate();
         d.getTablecicilan().repaint();
     }
@@ -122,33 +208,33 @@ public class CicilanController {
                 d.getTahapancicilan().setText(cicilan.getTahap_cicilan());
                 d.getKekurangancicilan().setText(HelperUmum.setDoubletoIDR(cicilan.getTotal_kekurangan()));
                 d.getTanggalnotifikasi().setDate(cicilan.getTanggal_notifikasi_terakhir());
-                
+
             }
         }
 
     }
 
-   
-    
     public void findba(CicilanFrame d, Confirm confirm, String noentitas) {
         Ba ba = dao.getBabynoentitas(noentitas);
         if (ba == null) {
             d.getNoba().requestFocusInWindow();
             d.getNoba().selectAll();
-            confirm.Warning("data ba dengan no entitas: " + noentitas + " tidak ditemukan");        
+            confirm.Warning("data ba dengan no entitas: " + noentitas + " tidak ditemukan");
         } else {
-                d.setBa(ba);
-                d.getNamaba().setText(ba.getNama_bu());
-                d.getTotaltunggakan().setText(HelperUmum.setDoubletoIDR(ba.getTotal_tunggakan()));
-                d.getKodecicilan().setText(kode.Generatekodecicilan(ba, confirm));
-                loadcicilan(d, ba);
+            d.setBa(ba);
+            d.getNamaba().setText(ba.getNama_bu());
+            d.getTotaltunggakan().setText(HelperUmum.setDoubletoIDR(ba.getTotal_tunggakan()));
+            d.getTotalpembayaran().setText(HelperUmum.setDoubletoIDR(ba.getTotal_pembayaran()));
+            d.getTotalkekurangan().setText(HelperUmum.setDoubletoIDR(ba.getTotal_kekurangan()));
+            d.getKodecicilan().setText(kode.Generatekodecicilan(ba, confirm));
+            loadcicilan(d, ba);
         }
     }
-    
+
     public void jumlahnominaltagihan(CicilanFrame d, Confirm confirm) {
-        if(d.getNominalcicilan().getText().isEmpty()){
+        if (d.getNominalcicilan().getText().isEmpty()) {
             d.getNominalcicilan().requestFocus();
-        }else{
+        } else {
             Double nominalcicilan = HelperUmum.ubahFormatRupiahkeAngka(d.getNominalcicilan().getText());
             Double tagihanberjalan = HelperUmum.ubahFormatRupiahkeAngka(d.getTagihanberjalan().getText());
             Double total = nominalcicilan + tagihanberjalan;
@@ -157,8 +243,6 @@ public class CicilanController {
             d.getStatuscicilan().setText("BELUM LUNAS");
         }
     }
-
-    
 
     public void simpan(CicilanFrame d, Confirm confirm) {
         if (d.getBa().getNama_bu().isEmpty()) {
@@ -185,24 +269,31 @@ public class CicilanController {
             cl.setSentnotification(Boolean.FALSE);
             try {
                 Ba ba = dao.getbabyid(d.getBa().getId_ba());
-                ba.setTotal_tunggakan(ba.getTotal_tunggakan() + cl.getTagihan_berjalan());
-                //==============================================================
-                List<Cicilan> listcil = dao.getallcicilanbybaandstatus(ba, "BELUM LUNAS", cl.getTanggal_notifikasi_terakhir());
-                if(!listcil.isEmpty()){
-                    for(Cicilan cilo: listcil){
-                        Cicilan cila = dao.getcicilanbyid(cilo.getId_cicilan());
-                        cila.setTanggal_notifikasi_terakhir(cl.getTanggal_notifikasi_terakhir());
-                        dao.Update(cila);
+                if (loadallnominalcicilan(ba) > ba.getTotal_kekurangan()) {
+                    confirm.Warning("Nominal cicilan melebihi sisa tunggakan");
+                    d.getNominalcicilan().requestFocusInWindow();
+                    d.getNominalcicilan().selectAll();
+                } else {
+                    ba.setTotal_tunggakan(ba.getTotal_tunggakan() + cl.getTagihan_berjalan());
+                    //==============================================================
+                    List<Cicilan> listcil = dao.getallcicilanbybaandstatus(ba, "BELUM LUNAS", cl.getTanggal_notifikasi_terakhir());
+                    if (!listcil.isEmpty()) {
+                        for (Cicilan cilo : listcil) {
+                            Cicilan cila = dao.getcicilanbyid(cilo.getId_cicilan());
+                            cila.setTanggal_notifikasi_terakhir(cl.getTanggal_notifikasi_terakhir());
+                            dao.Update(cila);
+                        }
                     }
-                }               
-                //==============================================================
-                dao.Update(ba);
-                dao.Simpan(cl);
-                //==============================================================
-                loadcicilan(d, d.getBa());
-                ResetCicilan(d);
-                EnableCicilan(d, Boolean.FALSE);
-                confirm.Berhasil("data berhasil disimpan");
+                    //==============================================================
+                    dao.Update(ba);
+                    dao.Simpan(cl);
+                    //==============================================================
+                    loadcicilan(d, d.getBa());
+                    ResetCicilan(d);
+                    EnableCicilan(d, Boolean.FALSE);
+                    confirm.Berhasil("data berhasil disimpan");
+                }
+
             } catch (HibernateException he) {
                 confirm.Gagal(he);
             }
@@ -210,7 +301,7 @@ public class CicilanController {
         }
 
     }
-    
+
     private Double totalbayar;
     private Double totalcurrent;
 
@@ -219,9 +310,9 @@ public class CicilanController {
         totalbayar = 0d;
         if (d.getBa().getNama_bu().isEmpty()) {
             confirm.Warning("anda belum memilih ba");
-        } else {           
+        } else {
             if (!d.getCicilan().getKode_cicilan().isEmpty()) {
-                Cicilan cl = dao.getcicilanbyid(d.getCicilan().getId_cicilan());   
+                Cicilan cl = dao.getcicilanbyid(d.getCicilan().getId_cicilan());
                 totalcurrent = cl.getTagihan_berjalan();
                 cl.setBa(d.getBa());
                 cl.setTahap_cicilan(d.getTahapancicilan().getText());
@@ -239,8 +330,8 @@ public class CicilanController {
                 }
                 cl.setTotal_kekurangan(cl.getTotal() - totalbayar);
                 //==============================================================
-                 Ba ba = dao.getbabyid(d.getBa().getId_ba());
-                 ba.setTotal_tunggakan(ba.getTotal_tunggakan()-totalcurrent+cl.getTagihan_berjalan());
+                Ba ba = dao.getbabyid(d.getBa().getId_ba());
+                ba.setTotal_tunggakan(ba.getTotal_tunggakan() - totalcurrent + cl.getTagihan_berjalan());
                 //==============================================================
                 dao.Update(ba);
                 try {
@@ -268,8 +359,8 @@ public class CicilanController {
                 d.setCicilan(cl);
                 cl.setBa(d.getBa());
                 List<Pembayaran> listpembayaran = dao.getallpembayaranbykodecicilan(cl.getKode_cicilan());
-                if(!listpembayaran.isEmpty()){
-                    for(Pembayaran pem:listpembayaran){
+                if (!listpembayaran.isEmpty()) {
+                    for (Pembayaran pem : listpembayaran) {
                         Ba ba = dao.getBabynoentitas(cl.getBa().getNo_entitas());
                         ba.setTotal_kekurangan(ba.getTotal_kekurangan() + pem.getPembayaran_cicilan());
                         ba.setTotal_pembayaran(ba.getTotal_pembayaran() - pem.getPembayaran_cicilan());
@@ -277,7 +368,7 @@ public class CicilanController {
                         Pembayaran pe = dao.getPembayaranbyid(pem.getId_pembayaran());
                         dao.Delete(pe);
                     }
-                }                            
+                }
                 try {
                     dao.Delete(cl);
                     loadcicilan(d, d.getBa());

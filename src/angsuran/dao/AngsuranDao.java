@@ -46,6 +46,8 @@ public interface AngsuranDao {
         
         public Ba getBabynoentitas(String noentitas);
         
+        public Ba getBabynamabu(String namabu);
+        
         //======================================================================
 	
 	public List<Cicilan> getallcicilanbyba(Ba ba);

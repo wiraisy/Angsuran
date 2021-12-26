@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5100396-da09-46c7-84ac-2b965e6b3e58">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="309"/>
 	<parameter name="image" class="java.io.InputStream" isForPrompting="false"/>
 	<parameter name="awal" class="java.lang.String"/>
 	<parameter name="akhir" class="java.lang.String"/>
@@ -372,7 +372,7 @@
 	<summary>
 		<band height="149">
 			<staticText>
-				<reportElement x="0" y="20" width="130" height="17" uuid="f3e86a0a-f8a9-4707-bbce-df667b4a5cce"/>
+				<reportElement x="0" y="20" width="67" height="17" uuid="f3e86a0a-f8a9-4707-bbce-df667b4a5cce"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -380,11 +380,13 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left"/>
-				<text><![CDATA[Total Tagihan Terbilang  ]]></text>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Total Tagihan]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="20" width="415" height="17" uuid="ba8454e3-3d24-4091-8e0c-1617edbc5423"/>
+				<reportElement x="77" y="20" width="478" height="17" uuid="ba8454e3-3d24-4091-8e0c-1617edbc5423"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -392,7 +394,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{terbilangtagihan}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -432,7 +436,7 @@
 				<textFieldExpression><![CDATA[$V{totalpembayaran}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="37" width="130" height="17" uuid="df9dc3dc-9ea1-4997-ac60-be39e9cc8e65"/>
+				<reportElement x="0" y="37" width="67" height="17" uuid="df9dc3dc-9ea1-4997-ac60-be39e9cc8e65"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -440,11 +444,13 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left"/>
-				<text><![CDATA[Total Pembayaran Terbilang]]></text>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Total Pembayaran ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="37" width="415" height="17" uuid="cfee90ea-65d3-4d52-8e02-4f3cd4a24181"/>
+				<reportElement x="77" y="37" width="478" height="17" uuid="cfee90ea-65d3-4d52-8e02-4f3cd4a24181"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -452,11 +458,13 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{terbilangpembayaran}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="54" width="130" height="17" uuid="e94147e4-fb5c-4e63-bc46-1ed486cad4ce"/>
+				<reportElement x="0" y="54" width="67" height="17" uuid="e94147e4-fb5c-4e63-bc46-1ed486cad4ce"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -464,23 +472,13 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left"/>
-				<text><![CDATA[Total Kekurangan Terbilang]]></text>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Total Kekurangan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="20" width="10" height="17" uuid="f3a5f8ab-dd1c-42a2-9607-87fd38edf77e"/>
-				<box>
-					<pen lineWidth="1.0" lineStyle="Solid"/>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="130" y="37" width="10" height="17" uuid="74c63d75-7b35-466e-9aa7-d03e4313d791"/>
+				<reportElement x="67" y="20" width="10" height="17" uuid="f3a5f8ab-dd1c-42a2-9607-87fd38edf77e"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -492,7 +490,19 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="54" width="10" height="17" uuid="17d0acf9-656b-43f0-a1f1-d9391a3cfccf"/>
+				<reportElement x="67" y="37" width="10" height="17" uuid="74c63d75-7b35-466e-9aa7-d03e4313d791"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="54" width="10" height="17" uuid="17d0acf9-656b-43f0-a1f1-d9391a3cfccf"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -504,7 +514,7 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="54" width="415" height="17" uuid="3b8560e2-b52b-434e-b94f-b810682db8bd"/>
+				<reportElement x="77" y="54" width="478" height="17" uuid="3b8560e2-b52b-434e-b94f-b810682db8bd"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -512,7 +522,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{terbilangkekurangan}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
@@ -525,10 +537,10 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$V{totalpembayaran}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{totalkekurangan}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="71" width="130" height="17" uuid="3aa9e1e7-3bcb-4489-8001-75fd81e45a9d"/>
+				<reportElement x="0" y="71" width="67" height="17" uuid="3aa9e1e7-3bcb-4489-8001-75fd81e45a9d"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -536,11 +548,13 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left"/>
-				<text><![CDATA[Jumlah BA Terdaftar     ]]></text>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jumlah BA     ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="71" width="10" height="17" uuid="4a869a2b-80be-4c15-95a6-b60ea62d55c2"/>
+				<reportElement x="67" y="71" width="10" height="17" uuid="4a869a2b-80be-4c15-95a6-b60ea62d55c2"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -552,7 +566,7 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="71" width="415" height="17" uuid="8e56dd55-7a40-4f94-95be-f5ad5db5d027"/>
+				<reportElement x="77" y="71" width="478" height="17" uuid="8e56dd55-7a40-4f94-95be-f5ad5db5d027"/>
 				<box>
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -560,7 +574,9 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{jumlahba}]]></textFieldExpression>
 			</textField>
 		</band>

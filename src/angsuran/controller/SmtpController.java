@@ -7,6 +7,8 @@ package angsuran.controller;
 
 import angsuran.dao.AngsuranDao;
 import angsuran.dao.AngsuranDaoImplements;
+import angsuran.helper.JTableRender;
+import angsuran.helper.ModalTable;
 import angsuran.listener.Confirm;
 import angsuran.model.SmtpModel;
 import angsuran.tablemodel.SmtpTM;
@@ -28,11 +30,16 @@ public class SmtpController {
     private AngsuranDao dao = new  AngsuranDaoImplements();
     private SendMailWithAttachment mail = new SendMailWithAttachment();
     private List<SmtpModel> list = new ArrayList<>();
+    private JTableRender jTableRender;
     
     public void LoadTable(SmtpFrame d){
         list = dao.getalllistsmtpmodel();
         model.setList(list);
         d.getTablesmtp().setModel(model);
+        for(int a=0; a<=model.getColumnCount()-1; a++){
+            d.getTablesmtp().getColumnModel().getColumn(a).setCellRenderer(new ModalTable());
+        }
+        jTableRender = new JTableRender(d.getTablesmtp());
         d.getTablesmtp().revalidate();
         d.getTablesmtp().repaint();
     }

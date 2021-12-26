@@ -47,47 +47,45 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="baru" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="simpan" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Component id="baru" min="-2" pref="96" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="update" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Component id="simpan" linkSize="1" min="-2" pref="94" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="delete" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Component id="update" linkSize="1" min="-2" pref="94" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="reset" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Component id="delete" linkSize="1" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="reset" linkSize="1" min="-2" pref="94" max="-2" attributes="0"/>
                               </Group>
                               <Component id="transparant1" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="transparant2" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="logoBpjs1" min="-2" max="-2" attributes="0"/>
                       <Component id="keluar" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="logoBpjs1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="transparant1" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="baru" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="update" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="delete" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="reset" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="simpan" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="baru" linkSize="2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="update" linkSize="2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="delete" linkSize="2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="reset" linkSize="2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="simpan" linkSize="2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
@@ -104,17 +102,26 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="372" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="282" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
         </Container>
         <Container class="angsuran.helper.Transparant" name="transparant1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6f" green="16" red="29" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6f" green="16" red="29" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -312,7 +319,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="baru">
           <Properties>
-            <Property name="text" type="java.lang.String" value="New"/>
+            <Property name="text" type="java.lang.String" value="BARU"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="baruActionPerformed"/>
@@ -320,7 +327,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="simpan">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Save"/>
+            <Property name="text" type="java.lang.String" value="SIMPAN"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="simpanActionPerformed"/>
@@ -328,7 +335,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="update">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Update"/>
+            <Property name="text" type="java.lang.String" value="UBAH"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateActionPerformed"/>
@@ -336,7 +343,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="delete">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="text" type="java.lang.String" value="HAPUS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteActionPerformed"/>
@@ -344,13 +351,22 @@
         </Component>
         <Component class="javax.swing.JButton" name="reset">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Reset"/>
+            <Property name="text" type="java.lang.String" value="RESET"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetActionPerformed"/>
           </Events>
         </Component>
         <Container class="angsuran.helper.Transparant" name="transparant2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6f" green="16" red="29" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6f" green="16" red="29" type="rgb"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -358,7 +374,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="833" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="916" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="Activate" min="-2" pref="259" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -410,7 +426,7 @@
             </Container>
             <Component class="javax.swing.JButton" name="Activate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Activate"/>
+                <Property name="text" type="java.lang.String" value="ACTIVATE"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ActivateActionPerformed"/>

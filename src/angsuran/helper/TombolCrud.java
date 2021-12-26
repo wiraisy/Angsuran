@@ -8,6 +8,7 @@ package angsuran.helper;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
@@ -22,15 +23,17 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  */
 public class TombolCrud{
     
-    private Dimension dim = new Dimension(110, 28);
+    private final Dimension dim = new Dimension(110, 28);
 
-    public TombolCrud(JButton but) {
-        
+    public TombolCrud(final JButton but) {   
         but.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {               
                 e.getComponent().setSize(dim);
+                e.getComponent().setMaximumSize(dim);
+                e.getComponent().setMinimumSize(dim);
                 e.getComponent().setPreferredSize(dim);
+                e.getComponent().setBounds(new Rectangle(dim));
             }
             
         });
@@ -42,8 +45,7 @@ public class TombolCrud{
         //======================================================================
         but.setBackground(new Color(0, 153, 51));
         but.setForeground(new Color(255, 255, 255));
-        but.setFont(new Font("Tahoma", 1, 12));
-        but.getBounds().setSize(dim);
+        but.setFont(new Font("Tahoma", 1, 11));
         but.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -70,6 +72,8 @@ public class TombolCrud{
                 but.setBackground(new Color(0, 153, 51));
             }
         });
+        but.revalidate();
+        but.repaint();
 
     }
 

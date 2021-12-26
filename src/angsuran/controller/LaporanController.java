@@ -121,6 +121,8 @@ public class LaporanController {
     private List<Pembayaran> listbayar = new ArrayList<>();
     
     public void LaporanPembayaran(LaporanFrame d, Confirm c){
+        listbayar = new ArrayList<>();
+        listcicilan = new ArrayList<>();
         Ba ba = dao.getBabynoentitas(d.getNoentitas().getText());
         if(ba == null){
             c.Warning("Ba tidak ditemukan");

@@ -7,6 +7,7 @@ package angsuran.view;
 
 import angsuran.controller.NotifikasiController;
 import angsuran.helper.HelperUmum;
+import angsuran.helper.JTableRender;
 import angsuran.helper.TombolGeneral;
 import angsuran.listener.Confirm;
 import angsuran.model.Notifikasi;
@@ -58,6 +59,7 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
         HelperUmum.setUpResolution(this);
         new TombolGeneral(keluar);
         new TombolGeneral(lihatlaporan);
+        new JTableRender(tablenotifikasi);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         c.LoadAllNotifikasi(this,namacari, this);
     }
@@ -117,7 +119,7 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
 
             }
         ));
-        tablenotifikasi.setGridColor(new java.awt.Color(204, 51, 0));
+        tablenotifikasi.setGridColor(new java.awt.Color(0, 153, 0));
         tablenotifikasi.setSelectionBackground(new java.awt.Color(255, 153, 0));
         tablenotifikasi.setSelectionForeground(new java.awt.Color(204, 0, 0));
         tablenotifikasi.getTableHeader().setReorderingAllowed(false);
@@ -129,10 +131,7 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
         jScrollPane1.setViewportView(tablenotifikasi);
         tablenotifikasi.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        cari.setBackground(new java.awt.Color(255, 255, 255));
-        cari.setForeground(new java.awt.Color(0, 0, 0));
         cari.setBorder(null);
-        cari.setCaretColor(new java.awt.Color(0, 0, 0));
         cari.setSelectedTextColor(new java.awt.Color(204, 0, 0));
         cari.setSelectionColor(new java.awt.Color(255, 153, 102));
         cari.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +142,6 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("CARI BY NAMA BA");
 
         pagination.addPaginationListener(new com.stripbandunk.jwidget.listener.PaginationListener() {
@@ -191,7 +189,7 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
                 .addGroup(transparant1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pagination, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lihatlaporan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         keluar.setText("KELUAR");
@@ -222,9 +220,9 @@ public class NotifikasiFrame extends javax.swing.JFrame implements Confirm{
                 .addGroup(deskPanelDasar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(logoBpjs1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(keluar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(40, 40, 40)
                 .addComponent(transparant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         getContentPane().add(deskPanelDasar1, java.awt.BorderLayout.CENTER);

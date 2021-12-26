@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PembayaranReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b672fd9d-745a-4745-9a7e-58b88b63bb8f">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -64,6 +66,22 @@
 		<field name="total" class="java.lang.Double"/>
 		<field name="total_kekurangan" class="java.lang.Double"/>
 		<field name="status" class="java.lang.String"/>
+		<variable name="totalnominalcicilan" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{total}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+		<variable name="totalkekurangancicilan" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{total_kekurangan}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+		<variable name="subtotalcicilan" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{nominal_cicilan}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+		<variable name="subtotaltagihanberjalan" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{tagihan_berjalan}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
 	</subDataset>
 	<subDataset name="DatasetPembayaran" uuid="c64f3ad6-129b-457f-b806-2428af60687a">
 		<field name="cicilan.tahap_cicilan" class="java.lang.String"/>
@@ -71,6 +89,18 @@
 		<field name="pembayaran_cicilan" class="java.lang.Double"/>
 		<field name="pembayaran_tunggakan_berjalan" class="java.lang.Double"/>
 		<field name="total_pembayaran" class="java.lang.Double"/>
+		<variable name="totalcicilan" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{pembayaran_cicilan}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+		<variable name="totaltagihanberjalan" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{pembayaran_tunggakan_berjalan}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+		<variable name="totalpembayaran" class="java.lang.Double" calculation="Sum">
+			<variableExpression><![CDATA[$F{total_pembayaran}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
 	</subDataset>
 	<parameter name="listcicilan" class="java.util.List"/>
 	<parameter name="listpembayaran" class="java.util.List"/>
@@ -97,9 +127,9 @@
 		</band>
 	</background>
 	<title>
-		<band height="125" splitType="Stretch">
+		<band height="150" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="94" width="555" height="30" uuid="a806999f-b2a6-4461-b88f-d483ddff01a6"/>
+				<reportElement x="0" y="113" width="555" height="30" uuid="a806999f-b2a6-4461-b88f-d483ddff01a6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -163,7 +193,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="60" y="59" width="120" height="15" uuid="26528cc7-0419-4178-87b2-bb25afd7d7e0"/>
-				<textFieldExpression><![CDATA[$P{noentitas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{noba}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="74" width="50" height="15" uuid="32ebc36c-ddd1-4196-8fe3-304cc2764381"/>
@@ -235,9 +265,9 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="190" splitType="Stretch">
+		<band height="142" splitType="Stretch">
 			<componentElement>
-				<reportElement x="0" y="40" width="550" height="150" uuid="fd8660b5-a383-4126-845c-03d6404d6baf">
+				<reportElement x="0" y="40" width="550" height="90" uuid="fd8660b5-a383-4126-845c-03d6404d6baf">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -249,12 +279,12 @@
 					</datasetRun>
 					<jr:column width="50" uuid="0d89d482-2543-49ef-935b-d742f1220512">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="50" height="30" uuid="7ce31fea-dbad-425a-9222-5544788c4e0a"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
 								<text><![CDATA[Tahapan]]></text>
 							</staticText>
 						</jr:columnHeader>
@@ -269,16 +299,24 @@
 					</jr:column>
 					<jr:column width="70" uuid="70a1fe34-d767-4631-8daf-ba1082ad3ac9">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
-						<jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="70" height="30" uuid="d9da60b3-944c-4154-9938-e84d8fe04894"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
 								<text><![CDATA[Jatuh Tempo]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="30" uuid="60bab9d9-5ab1-4776-93f1-19a69751c24d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="70" height="30" uuid="201fedc1-e86f-4e62-92f8-76f6852bfbea"/>
@@ -289,16 +327,24 @@
 					</jr:column>
 					<jr:column width="80" uuid="f5da9cb2-476f-4be0-bf1f-07644ac28eca">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
-						<jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="80" height="30" uuid="a1a60138-7e1b-459e-8dd3-d90d515e1f9e"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
 								<text><![CDATA[Besar Cicilan]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="80" height="30" uuid="0273e641-0e94-4149-b62c-9a768f2775a2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0").format($V{subtotalcicilan})]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="80" height="30" uuid="cf4c691c-b813-4515-ad58-20cffa57adaf"/>
@@ -309,16 +355,24 @@
 					</jr:column>
 					<jr:column width="90" uuid="b1a9eb65-66f6-4150-bd39-1253c6f0467d">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
-						<jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="af40dbb8-aa06-4a06-b254-78f68cc0741e"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
 								<text><![CDATA[Tagihan Berjalan]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="10719c2c-c900-4d6f-851f-0abe47bd9c81"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0").format($V{subtotaltagihanberjalan})]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="30" uuid="e05c555d-2413-4779-b94e-8fc0267ebcca"/>
@@ -329,16 +383,24 @@
 					</jr:column>
 					<jr:column width="90" uuid="32f6ab22-c03c-4705-8cc1-4a8f977d76fc">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
-						<jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="7b35cd1f-6d28-4ed8-ad9e-2ce5566012b8"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
 								<text><![CDATA[SubTotal]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="8e4bab00-1e8c-413d-83ad-923a520ffe8f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0").format($V{totalnominalcicilan})]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="30" uuid="bc6147e9-4359-4d88-8e42-f28e5f446090"/>
@@ -349,16 +411,24 @@
 					</jr:column>
 					<jr:column width="90" uuid="520c75ea-d29a-4bcd-b59d-d13b20d95f54">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
-						<jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="5bd182f5-45ed-4354-a909-5a14c3cfa9cb"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
 								<text><![CDATA[Kekurangan]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b1bb38e5-fe5f-4148-922f-1b92f1c81573"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0").format($V{totalkekurangancicilan})]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
 						<jr:detailCell style="Table_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="90" height="30" uuid="9e4391bf-dff1-4721-a406-3ad3b6fc8e4d"/>
@@ -369,12 +439,12 @@
 					</jr:column>
 					<jr:column width="80" uuid="5fffc333-6366-42c7-b38a-1faaff8b3670">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
-						<jr:tableHeader style="Table_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="80" height="30" uuid="40141347-38f0-47bb-a568-0a60acaa0620"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
 								<text><![CDATA[Status]]></text>
 							</staticText>
 						</jr:columnHeader>
@@ -397,7 +467,7 @@
 				<text><![CDATA[DATA CICILAN]]></text>
 			</staticText>
 		</band>
-		<band height="194">
+		<band height="130">
 			<staticText>
 				<reportElement x="0" y="0" width="550" height="30" uuid="2cd4d1b0-1092-4acc-b18c-bbdcab41c238"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -406,7 +476,7 @@
 				<text><![CDATA[DATA PEMBAYARAN]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement x="0" y="30" width="550" height="150" uuid="7ed6888d-4490-4440-90b2-f1182f015ef0">
+				<reportElement x="0" y="30" width="550" height="90" uuid="7ed6888d-4490-4440-90b2-f1182f015ef0">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
@@ -418,8 +488,6 @@
 					</datasetRun>
 					<jr:column width="80" uuid="a43c09be-23f7-4999-b6bf-a632e617fbda">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table 1_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="80" height="30" uuid="62b27d86-46e4-4dd9-a814-2faff5799040"/>
@@ -438,8 +506,6 @@
 					</jr:column>
 					<jr:column width="110" uuid="0524908f-c5be-43fd-baa0-af178f8060b9">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
-						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table 1_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="110" height="30" uuid="1483f98b-e358-482b-818a-e2f9932c83a9"/>
@@ -447,7 +513,15 @@
 								<text><![CDATA[Tanggal Bayar]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table 1_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="110" height="30" uuid="970fa312-5b06-4434-bbe5-0477031595c0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL]]></text>
+							</staticText>
+						</jr:columnFooter>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="110" height="30" uuid="690dee0b-632b-403b-a096-17d01d9dac87"/>
@@ -458,8 +532,6 @@
 					</jr:column>
 					<jr:column width="130" uuid="b792972b-5d05-47d1-9230-37ab9696969c">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
-						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table 1_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="130" height="30" uuid="302cfc14-b115-42bd-97be-e8081ed5e8c6"/>
@@ -467,7 +539,15 @@
 								<text><![CDATA[Cicilan]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table 1_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table 1_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="130" height="30" uuid="fd6b08af-c197-4634-9f28-15008ff4bf19"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0").format($V{totalcicilan})]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="130" height="30" uuid="46dbdff0-f1bd-43c5-b6db-1bf0cc5d2bff"/>
@@ -478,8 +558,6 @@
 					</jr:column>
 					<jr:column width="120" uuid="ccba2e21-d144-4719-964a-cc0509296d8f">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
-						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table 1_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="120" height="30" uuid="32a2da55-da98-489c-bc48-6d79cc701fd6"/>
@@ -487,7 +565,15 @@
 								<text><![CDATA[Tagihan Berjalan]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table 1_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table 1_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="120" height="30" uuid="b9e653e1-a445-4eee-8aea-0a63e97fdbfd"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0").format($V{totaltagihanberjalan})]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="120" height="30" uuid="058039a2-6d60-455d-b393-acc7317dc88b"/>
@@ -498,8 +584,6 @@
 					</jr:column>
 					<jr:column width="110" uuid="94bfd924-7e0d-4db2-a230-fa300d4696c2">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
-						<jr:tableHeader style="Table 1_TH" height="30" rowSpan="1"/>
-						<jr:tableFooter style="Table 1_TH" height="30" rowSpan="1"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
 								<reportElement x="0" y="0" width="110" height="30" uuid="1b3dad24-119c-4c20-b9cf-c0eef4b53142"/>
@@ -507,7 +591,15 @@
 								<text><![CDATA[Subtotal]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:columnFooter style="Table 1_CH" height="30" rowSpan="1"/>
+						<jr:columnFooter style="Table 1_CH" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="110" height="30" uuid="f643ba62-c316-4edc-841a-1c3701b84ee4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0").format($V{totalpembayaran})]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="110" height="30" uuid="4c5462c0-37e1-4b02-b2d8-becb36122312"/>

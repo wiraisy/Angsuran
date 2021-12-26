@@ -8,32 +8,44 @@ package angsuran.helper;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
 
 /**
  *
  * @author RAKA
  */
-public class TombolGeneral {
+public class TombolGeneral{
+       
+    private final Dimension dim = new Dimension(223,43);
     
-
-    public TombolGeneral(JButton but) {
-        Dimension dim = new Dimension(223,43);
+    public TombolGeneral(final JButton but) {
+        but.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {               
+                e.getComponent().setSize(dim);
+                e.getComponent().setMaximumSize(dim);
+                e.getComponent().setMinimumSize(dim);
+                e.getComponent().setPreferredSize(dim);
+                e.getComponent().setBounds(new Rectangle(dim));
+            }           
+        });
         but.setBackground(new Color(0,153,51));
         but.setForeground(new Color(255, 255, 255));
-        but.setFont(new Font("Tahoma", 1, 12));
-        but.setSize(dim);
-        but.setPreferredSize(dim);
+        but.setFont(new Font("Tahoma", 1, 11));
         but.setContentAreaFilled(false);
         but.setBorderPainted(false);
         but.setOpaque(true);
         but.setLayout(new AbsoluteLayout());
-        but.setBorder(BorderFactory.createEmptyBorder());
-        
+        but.setBorder(BorderFactory.createEmptyBorder());   
+        but.setHorizontalAlignment(SwingConstants.CENTER);
         but.addMouseListener(new MouseListener() {
 
             @Override
@@ -61,6 +73,8 @@ public class TombolGeneral {
                  but.setBackground(new Color(0,153,51));
             }
         });
+        but.revalidate();
+        but.repaint();
     }
 
 }

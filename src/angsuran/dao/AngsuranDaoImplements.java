@@ -225,7 +225,7 @@ public class AngsuranDaoImplements implements AngsuranDao {
                 c.add(Restrictions.between("tanggal_ba", awal, akhir));
             }
             if (status != null) {
-                c.add(Restrictions.ilike("no_entitas", status));
+                c.add(Restrictions.ilike("status_tunggakan", status));
             }          
             list = c.list();
             trans.commit();
@@ -262,6 +262,29 @@ public class AngsuranDaoImplements implements AngsuranDao {
         }
         return ba;
     }
+
+    @Override
+    public Ba getBabynamabu(String namabu) {
+        Session session = Helper.getSessionFactory().openSession();
+        Ba ba = new Ba();
+        try {
+            Transaction trans = session.beginTransaction();
+            Criteria c = session.createCriteria(Ba.class);
+            c.add(Restrictions.eq("nama_bu", namabu));
+            ba = (Ba) c.uniqueResult();
+            trans.commit();
+        } catch (HibernateException he) {
+            session.getTransaction().rollback();
+            he.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return ba;
+    }
+    
+    
 
     //========================= CICILAN ========================================
     @Override
@@ -474,6 +497,7 @@ public class AngsuranDaoImplements implements AngsuranDao {
             Criteria c = session.createCriteria(Pembayaran.class, "bayar");
             c.createAlias("bayar.cicilan", "baci");
             c.add(Restrictions.eq("baci.kode_cicilan", kodecicilan));
+            c.addOrder(Order.desc("tanggal_pembayaran"));
             list = c.list();
             trans.commit();
         } catch (HibernateException he) {
